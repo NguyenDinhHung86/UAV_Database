@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>U.S. Military UAV Database</title>
+<style>
+  :root {
+    --bg: #0a0e1a; --surface: #111827; --surface2: #1a2236; --surface3: #1f2d44;
+    --border: #243048; --accent: #2563eb; --accent2: #1d4ed8; --gold: #f59e0b;
+    --green: #10b981; --red: #ef4444; --yellow: #eab308; --blue: #3b82f6;
+    --purple: #8b5cf6; --cyan: #06b6d4; --text: #e2e8f0; --muted: #64748b; --subtle: #334155;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+  /* HEADER */
+  header{background:linear-gradient(135deg,#0f1e3a 0%,#0a1628 50%,#0d1f3c 100%);border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+  .header-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;gap:16px;height:64px}
+  .logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),#1e40af);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .logo-text h1{font-size:18px;font-weight:700;color:#fff;letter-spacing:.5px}
+  .logo-text p{font-size:11px;color:var(--muted)}
+  .header-search{flex:1;max-width:400px;position:relative}
+  .header-search input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 12px 8px 36px;color:var(--text);font-size:14px;outline:none;transition:.2s}
+  .header-search input:focus{border-color:var(--accent)}
+  .search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px}
+  .header-stats{display:flex;gap:16px;margin-left:auto}
+  .stat-badge{text-align:center;padding:4px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px}
+  .stat-badge .num{font-size:18px;font-weight:700;color:var(--accent);line-height:1}
+  .stat-badge .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+
+  /* LAYOUT */
+  .app{display:flex;max-width:1600px;margin:0 auto;height:calc(100vh - 64px)}
+
+  /* SIDEBAR */
+  .sidebar{width:300px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+  .sidebar-filters{padding:12px;border-bottom:1px solid var(--border)}
+  .filter-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .filter-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+  .filter-btn{padding:3px 8px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:11px;cursor:pointer;transition:.15s;white-space:nowrap}
+  .filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .filter-btn:hover:not(.active){border-color:var(--accent);color:var(--text)}
+  .uav-list{flex:1;overflow-y:auto;padding:8px}
+  .uav-list::-webkit-scrollbar{width:4px}
+  .uav-list::-webkit-scrollbar-track{background:transparent}
+  .uav-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+  .uav-card{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:.15s;border:1px solid transparent;margin-bottom:4px}
+  .uav-card:hover{background:var(--surface2);border-color:var(--border)}
+  .uav-card.active{background:var(--surface3);border-color:var(--accent)}
+  .card-img{width:52px;height:36px;border-radius:5px;object-fit:cover;background:var(--surface3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;overflow:hidden}
+  .card-img img{width:100%;height:100%;object-fit:cover}
+  .card-info{flex:1;min-width:0}
+  .card-desig{font-size:12px;font-weight:700;color:var(--accent);font-family:monospace;letter-spacing:.3px}
+  .card-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card-mfr{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card-status{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+  /* MAIN DETAIL */
+  .detail{flex:1;overflow-y:auto;background:var(--bg)}
+  .detail::-webkit-scrollbar{width:6px}
+  .detail::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+  /* DETAIL HERO */
+  .detail-hero{position:relative;min-height:280px;background:var(--surface);overflow:hidden}
+  .hero-gallery{display:flex;gap:4px;height:260px;padding:4px}
+  .hero-main{flex:3;border-radius:10px;overflow:hidden;position:relative;background:var(--surface2)}
+  .hero-main img{width:100%;height:100%;object-fit:cover}
+  .hero-thumbs{flex:1;display:flex;flex-direction:column;gap:4px;max-width:140px}
+  .hero-thumb{flex:1;border-radius:6px;overflow:hidden;cursor:pointer;background:var(--surface2);position:relative;border:2px solid transparent;transition:.15s}
+  .hero-thumb.active{border-color:var(--accent)}
+  .hero-thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb-cap{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);font-size:9px;padding:2px 4px;color:#fff}
+  .no-image{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted)}
+  .no-image span{font-size:48px}
+
+  /* DETAIL HERO OVERLAY */
+  .hero-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(to top,rgba(10,14,26,.98) 0%,transparent 100%)}
+  .hero-designation{font-family:monospace;font-size:13px;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase}
+  .hero-name{font-size:26px;font-weight:800;color:#fff;line-height:1.1;margin:2px 0 6px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+  .badge-status-active{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.4);color:#10b981}
+  .badge-status-retired{background:rgba(100,116,139,.15);border:1px solid rgba(100,116,139,.4);color:#94a3b8}
+  .badge-status-cancelled{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);color:#ef4444}
+  .badge-status-dev{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.4);color:#8b5cf6}
+  .badge-status-limited{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);color:#f59e0b}
+  .badge-cat{background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);color:#60a5fa}
+  .badge-mfr{background:rgba(30,41,59,.8);border:1px solid var(--border);color:var(--text)}
+
+  /* DETAIL BODY */
+  .detail-body{padding:20px;max-width:1200px}
+  .section{margin-bottom:24px}
+  .section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+  /* INFO GRID */
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px}
+  .info-card .ic-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+  .info-card .ic-value{font-size:14px;font-weight:600;color:var(--text)}
+  .info-card .ic-value.accent{color:var(--accent)}
+  .info-card .ic-value.green{color:var(--green)}
+  .info-card .ic-value.gold{color:var(--gold)}
+
+  /* SPECS TABLE */
+  .specs-tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+  .spec-tab{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;transition:.15s}
+  .spec-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .specs-table{width:100%;border-collapse:collapse;font-size:13px}
+  .specs-table th{text-align:left;padding:8px 12px;background:var(--surface2);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--border)}
+  .specs-table td{padding:8px 12px;border-bottom:1px solid var(--border)}
+  .specs-table tr:last-child td{border-bottom:none}
+  .specs-table tr:hover td{background:var(--surface2)}
+  .specs-table td:first-child{color:var(--muted);width:40%}
+  .specs-table td:last-child{font-weight:600}
+
+  /* VARIANTS */
+  .variants-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+  .variant-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px}
+  .variant-desig{font-family:monospace;font-size:13px;font-weight:700;color:var(--cyan);margin-bottom:4px}
+  .variant-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+  /* ARMAMENT */
+  .arm-list{display:flex;flex-wrap:wrap;gap:6px}
+  .arm-item{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:6px;padding:5px 12px;font-size:12px;color:#fca5a5;display:flex;align-items:center;gap:6px}
+  .arm-item::before{content:'🎯';font-size:11px}
+  .arm-none{color:var(--muted);font-style:italic;font-size:13px}
+
+  /* SENSORS */
+  .sensor-list{display:flex;flex-wrap:wrap;gap:6px}
+  .sensor-item{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.25);border-radius:6px;padding:5px 12px;font-size:12px;color:#67e8f9}
+
+  /* OPERATORS */
+  .op-list{display:flex;flex-wrap:wrap;gap:6px}
+  .op-item{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:6px;padding:5px 12px;font-size:12px;color:#fcd34d;display:flex;align-items:center;gap:6px}
+
+  /* DESCRIPTION */
+  .desc-box{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:16px;font-size:14px;line-height:1.8;color:#cbd5e1}
+  .notes-box{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.2);border-left:3px solid var(--gold);border-radius:8px;padding:14px;font-size:13px;line-height:1.7;color:#fde68a;margin-top:10px}
+
+  /* SOURCE */
+  .source-link{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 14px;font-size:12px;color:var(--accent);text-decoration:none;transition:.15s}
+  .source-link:hover{background:var(--surface3);border-color:var(--accent)}
+
+  /* EMPTY / WELCOME */
+  .welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:var(--muted);text-align:center;padding:40px}
+  .welcome .w-icon{font-size:64px;opacity:.3}
+  .welcome h2{font-size:22px;color:var(--text);font-weight:600}
+  .welcome p{font-size:14px;max-width:400px;line-height:1.6}
+
+  /* COUNT */
+  .list-count{font-size:11px;color:var(--muted);padding:4px 10px;margin-bottom:4px}
+
+  /* THUMB FALLBACK */
+  .thumb-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:20px;background:var(--surface2)}
+
+  /* RESPONSIVE TWEAK */
+  @media(max-width:900px){
+    .sidebar{width:240px}
+    .hero-thumbs{display:none}
+    .hero-main{flex:1}
+  }
+  @media(max-width:640px){
+    .sidebar{display:none}
+    .header-stats{display:none}
+  }
+
+  /* SCROLL STYLE */
+  .detail::-webkit-scrollbar{width:5px}
+
+  /* SEPARATORS for spec dual values */
+  .spec-dual{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .spec-main{font-size:14px;font-weight:700;color:var(--text)}
+  .spec-alt{font-size:11px;color:var(--muted)}
+
+  /* Progress bar accent */
+  .prog-bar-wrap{margin-top:2px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+  .prog-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">✈</div>
+      <div class="logo-text">
+        <h1>U.S. Military UAV Database</h1>
+        <p>Source: designation-systems.net · Andreas Parsch</p>
+      </div>
+    </div>
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên, ký hiệu, nhà sản xuất…" oninput="applyFilters()"/>
+    </div>
+    <div class="header-stats">
+      <div class="stat-badge"><div class="num" id="totalCount">0</div><div class="lbl">UAV</div></div>
+      <div class="stat-badge"><div class="num" id="activeCount">0</div><div class="lbl">Active</div></div>
+      <div class="stat-badge"><div class="num" id="retiredCount">0</div><div class="lbl">Retired</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-filters">
+      <div class="filter-label">Trạng thái</div>
+      <div class="filter-row" id="statusFilters">
+        <button class="filter-btn active" onclick="setFilter('status','all',this)">Tất cả</button>
+        <button class="filter-btn" onclick="setFilter('status','active',this)">Active</button>
+        <button class="filter-btn" onclick="setFilter('status','retired',this)">Retired</button>
+        <button class="filter-btn" onclick="setFilter('status','development',this)">Dev</button>
+        <button class="filter-btn" onclick="setFilter('status','cancelled',this)">Cancelled</button>
+        <button class="filter-btn" onclick="setFilter('status','limited',this)">Limited</button>
+      </div>
+      <div class="filter-label">Loại</div>
+      <div class="filter-row" id="catFilters">
+        <button class="filter-btn active" onclick="setFilter('cat','all',this)">Tất cả</button>
+        <button class="filter-btn" onclick="setFilter('cat','hale',this)">HALE</button>
+        <button class="filter-btn" onclick="setFilter('cat','male',this)">MALE</button>
+        <button class="filter-btn" onclick="setFilter('cat','tuav',this)">TUAV</button>
+        <button class="filter-btn" onclick="setFilter('cat','suav',this)">SUAV</button>
+        <button class="filter-btn" onclick="setFilter('cat','vtol',this)">VTOL</button>
+        <button class="filter-btn" onclick="setFilter('cat','ucav',this)">UCAV</button>
+        <button class="filter-btn" onclick="setFilter('cat','attritable',this)">Attritable</button>
+      </div>
+    </div>
+    <div class="list-count" id="listCount">0 kết quả</div>
+    <div class="uav-list" id="uavList"></div>
+  </div>
+
+  <!-- DETAIL -->
+  <div class="detail" id="detail">
+    <div class="welcome">
+      <div class="w-icon">🛩️</div>
+      <h2>Chọn một UAV để xem chi tiết</h2>
+      <p>Danh sách đầy đủ các UAV quân sự Mỹ từ RQ-1 Predator đến XQ-58A Valkyrie và các hệ thống mới nhất.</p>
+      <p style="margin-top:8px;font-size:12px">Dữ liệu từ <a href="https://www.designation-systems.net/dusrm/app2/" style="color:var(--accent)" target="_blank">designation-systems.net</a> — Andreas Parsch</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const UAV_DATA = [
+  {id:"q-1",designation:"RQ/MQ-1",name:"Predator / Gray Eagle",manufacturer:"General Atomics (GA-ASI)",status:"Retired (USAF 2018) / Active (Army MQ-1C)",role:"Tactical Multimission / Armed Reconnaissance",category:"MALE",firstFlight:"Tháng 7/1994",introduced:"1995",operators:["USAF","U.S. Army"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-1.html",images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-1l.jpg",caption:"RQ-1L",credit:"General Atomics"},{url:"https://www.designation-systems.net/dusrm/app2/mq-1l.jpg",caption:"MQ-1L (armed)",credit:"General Atomics"},{url:"https://www.designation-systems.net/dusrm/app2/mq-1c.jpg",caption:"MQ-1C Gray Eagle",credit:"General Atomics"},{url:"https://www.designation-systems.net/dusrm/app2/mq-1c-er.jpg",caption:"MQ-1C ER",credit:"GA-ASI"}],
+  specs:{primary:{name:"RQ-1L",data:[["Chiều dài","8.13 m (26 ft 8 in)"],["Sải cánh","14.83 m (48 ft 8 in)"],["Chiều cao","2.21 m (7 ft 3 in)"],["TL tối đa","1,020 kg (2,250 lb)"],["TL rỗng","430 kg (950 lb)"],["Tốc độ tối đa","217 km/h (117 kts)"],["Trần bay","7,920 m (26,000 ft)"],["Tầm hoạt động","740 km (400 nm)"],["Thời gian bay","> 20 giờ"],["Động cơ","Rotax 914 UL; 78.3 kW (105 hp)"]]},variants_specs:[{name:"MQ-1C Gray Eagle",data:[["Chiều dài","8.5 m (28 ft)"],["Sải cánh","17.1 m (56 ft)"],["TL tối đa","1,630 kg (3,600 lb)"],["Tốc độ tối đa","309 km/h (167 kts)"],["Trần bay","8,840 m (29,000 ft)"],["Thời gian bay","25 giờ"],["Động cơ","Thielert Centurion 1.7 HFE; 111 kW (165 hp)"]]},{name:"MQ-1C-25M (GE 25M)",data:[["Sải cánh","17.7 m (58 ft)"],["TL tối đa","2,000 kg (4,400 lb)"],["Trần bay","7,620 m (25,000 ft)"],["Thời gian bay","40 giờ"],["Động cơ","HFE diesel; 135 kW (200 hp)"]]}]},
+  variants:[{d:"RQ-1K",desc:"ACTD air vehicle, Rotax 912 UL"},{d:"RQ-1L",desc:"Block 1, Rotax 914 UL, de-icing"},{d:"MQ-1L",desc:"Armed variant, tái ký hiệu 2/2002"},{d:"MQ-1B",desc:"Armed system designation"},{d:"YMQ-1C",desc:"Sky Warrior prototype, 2006"},{d:"MQ-1C",desc:"Gray Eagle — U.S. Army, từ 2010"},{d:"MQ-1C GE-ER",desc:"Extended Range, từ 2017"},{d:"MQ-1C-25M",desc:"Gray Eagle 25M, bay lần đầu 12/2023"}],
+  armament:["AGM-114 Hellfire (tối đa 4)","FIM-92 Stinger (đánh giá)","Các vũ khí dẫn đường chính xác khác"],sensors:["AN/ZPQ-1 TESAR SAR radar","Raytheon AN/AAS-52(V) MTS EO/IR turret","SAR/GMTI (MQ-1C)"],
+  description:"Predator là UAV đa nhiệm chiến thuật đầu tiên của USAF. GA-ASI nhận hợp đồng ACTD từ DARPA vào 1/1994 cho yêu cầu Tier II MAE UAV. Dựa trên thiết kế Gnat-750, bay lần đầu 7/1994, sử dụng tác chiến lần đầu 7/1995 tại Albania. Hoạt động rộng rãi ở Afghanistan và Iraq. USAF nhận hơn 250 chiếc; chiếc MQ-1 cuối cùng nghỉ hưu 3/2018. MQ-1C Gray Eagle là biến thể tầm xa vũ trang của U.S. Army với hệ thống cất hạ cánh tự động (ATLS). Đến 2019, Army đã mua 204 chiếc MQ-1C. Biến thể GE 25M bổ sung radar mới, ECM nâng cao và bệ phóng dual-rail cho tối đa 8 Hellfire.",
+  notes:"Biến thể Gray Eagle STOL (turboprop, 7 giá treo) được tiết lộ năm 2021 cho hoạt động từ sân bay dã chiến/tàu đổ bộ nhưng chưa có đơn đặt hàng lớn từ quân đội Mỹ."},
+
+  {id:"q-2",designation:"RQ-2",name:"Pioneer",manufacturer:"IAI / Pioneer UAV Inc. (IAI+AAI)",status:"Retired (2007)",role:"Trinh sát chiến thuật / Hỗ trợ hỏa lực hải quân",category:"TUAV",firstFlight:"1985",introduced:"1986",operators:["U.S. Navy","U.S. Marine Corps","U.S. Army (đến 1995)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-2.html",images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-2a-1.jpg",caption:"RQ-2A",credit:"U.S. Navy"},{url:"https://www.designation-systems.net/dusrm/app2/rq-2a.jpg",caption:"RQ-2A bay",credit:"U.S. Navy"},{url:"https://www.designation-systems.net/dusrm/app2/rq-2a-2.jpg",caption:"RQ-2A thu hồi",credit:"U.S. Navy"},{url:"https://www.designation-systems.net/dusrm/app2/qrq-2b.jpg",caption:"QRQ-2B Flycatcher (mục tiêu giả)",credit:"U.S. Navy/Vance Vasquez"}],
+  specs:{primary:{name:"RQ-2A",data:[["Chiều dài","4.27 m (14 ft)"],["Sải cánh","5.15 m (16 ft 10.75 in)"],["Chiều cao","1.00 m (3 ft 3.5 in)"],["TL tối đa","205 kg (450 lb)"],["TL rỗng","178 kg (392 lb)"],["Tốc độ tối đa","204 km/h (127 mph)"],["Tốc độ hành trình","120 km/h (74 mph)"],["Trần bay","4,570 m (15,000 ft)"],["Tầm hoạt động","185 km (100 nm)"],["Thời gian bay","5 giờ"],["Động cơ","Sachs & Fichtel SF2-350; 19.4 kW (26 hp) | RQ-2C: UEL AR-741; 28.3 kW (38 hp)"]]}},
+  variants:[{d:"RQ-2A",desc:"Biến thể sản xuất ban đầu, ký hiệu 1997"},{d:"RQ-2B",desc:"Nâng cấp UCARS + MIAG, đặt hàng 1997; 33 chiếc RQ-2A được nâng cấp"},{d:"RQ-2C",desc:"Nâng cấp kế hoạch: động cơ AR-741 + laser designator (rất ít hoặc không có)"},{d:"QRQ-2B",desc:"Flycatcher — chuyển đổi thành máy bay mục tiêu giả"}],
+  armament:["Không vũ khí (chỉ ISR)"],sensors:["Wescam DS-12 EO/IR turret","C-band datalink (tầm 185 km)"],
+  description:"Pioneer là UAV chiến trường đầu tiên trong biên chế quân đội Mỹ. IAI bắt đầu phát triển từ 1984 dựa trên UAV Scout của Israel. Pioneer thắng cuộc đấu thầu hải quân Mỹ tháng 1/1986. Được sử dụng lần đầu trong Chiến tranh vùng Vịnh 1991 — nổi tiếng với sự kiện binh sĩ Iraq đầu hàng trước một chiếc Pioneer đang bay trinh sát. Pioneer từng hoạt động từ các thiết giáp hạm lớp Iowa và tàu đổ bộ lớp Austin. Nghỉ hưu năm 2007. Các khung máy bay còn lại được chuyển đổi thành máy bay mục tiêu QRQ-2B Flycatcher.",
+  notes:"Sự thành công của Pioneer trong Chiến tranh vùng Vịnh đã thúc đẩy đáng kể việc công nhận UAV là thành phần tác chiến thực sự của quân đội Mỹ trong những năm 1990."},
+
+  {id:"q-3",designation:"RQ-3",name:"DarkStar",manufacturer:"Lockheed Martin / Boeing",status:"Cancelled (1999)",role:"Trinh sát tàng hình cao độ (Tier III Minus)",category:"HALE",firstFlight:"Tháng 3/1996",introduced:"N/A",operators:["DARPA","USAF (đánh giá)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-3.html",images:[],
+  specs:{primary:{name:"RQ-3A",data:[["Chiều dài","4.57 m (15 ft)"],["Sải cánh","21.0 m (69 ft)"],["Chiều cao","1.07 m (3 ft 6 in)"],["TL tối đa","3,901 kg (8,600 lb)"],["Trần bay","13,700 m (45,000 ft)"],["Tầm hoạt động","926 km (500 nm)"],["Thời gian bay","8 giờ"],["Động cơ","Williams F129 turbofan; 3.1 kN (700 lbf)"]]}},
+  variants:[{d:"RQ-3A",desc:"Biến thể duy nhất; máy bay demonstrator ACTD"}],
+  armament:["Không vũ khí"],sensors:["EO/IR","SAR (kế hoạch)"],
+  description:"DarkStar là UAV HALE tự động, tàng hình cao được phát triển theo chương trình Tier III Minus của DARPA. Thiết kế cánh bay giúp giảm tối đa radar cross section. Gặp tai nạn trong chuyến bay thứ hai (4/1996) và phải thiết kế lại. Hiệu suất bay luôn không đạt yêu cầu và chi phí vượt trội. Chương trình bị hủy 1/1999 trước khi đạt IOC.",
+  notes:"Thiết kế nhằm vào các nhiệm vụ trinh sát trong vùng trời bị phòng thủ mạnh — là tiền thân tư tưởng của RQ-170 Sentinel sau này."},
+
+  {id:"q-4",designation:"RQ-4 / MQ-4",name:"Global Hawk / Triton",manufacturer:"Northrop Grumman (Teledyne Ryan)",status:"Active (USAF nghỉ hưu 2027) / Active (USN MQ-4C)",role:"HALE ISR / Giám sát hàng hải",category:"HALE",firstFlight:"Tháng 2/1998",introduced:"2001",operators:["USAF","U.S. Navy (MQ-4C)","NASA","Nhật Bản","Hàn Quốc","NATO (RQ-4D)","Australia"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-4.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-4a.jpg",caption:"RQ-4A Block 10",credit:"USAF"},{url:"https://www.designation-systems.net/dusrm/app2/rq-4a-1.jpg",caption:"RQ-4A sơ đồ",credit:"Northrop Grumman"},{url:"https://www.designation-systems.net/dusrm/app2/rq-4b.jpg",caption:"RQ-4B Block 20/30/40",credit:"Northrop Grumman"},{url:"https://www.designation-systems.net/dusrm/app2/eq-4b.jpg",caption:"EQ-4B BACN",credit:"USAF"},{url:"https://www.designation-systems.net/dusrm/app2/rq-4d.jpg",caption:"RQ-4D Phoenix (NATO)",credit:"Northrop Grumman"},{url:"https://www.designation-systems.net/dusrm/app2/mq-4c.jpg",caption:"MQ-4C Triton (US Navy)",credit:"U.S. Navy"}],
+  specs:{primary:{name:"RQ-4A",data:[["Chiều dài","13.53 m (44 ft 4.75 in)"],["Sải cánh","35.42 m (116 ft 2.5 in)"],["Chiều cao","4.64 m (15 ft 2.5 in)"],["TL tối đa","12,130 kg (26,750 lb)"],["TL rỗng","6,710 kg (14,800 lb)"],["Tốc độ tối đa","648 km/h (403 mph)"],["Trần bay","19,800 m (65,000 ft)"],["Tầm hoạt động","21,720 km (11,730 nm)"],["Thời gian bay","36 giờ"],["Động cơ","Rolls-Royce/Allison F137-RR-100; 33.8 kN (7,600 lbf)"]]},variants_specs:[{name:"RQ-4B (Block 20/30/40)",data:[["Chiều dài","14.50 m (47 ft 7 in)"],["Sải cánh","39.90 m (130 ft 11 in)"],["TL tối đa","14,630 kg (32,250 lb)"],["Tốc độ tối đa","574 km/h (357 mph)"],["Trần bay","18,300 m (60,000 ft)"],["Thời gian bay","> 34 giờ"]]},{name:"MQ-4C Triton",data:[["Đặc điểm","Cấu trúc gia cố, hệ thống chống đóng băng, chống sét"],["Cảm biến chính","AN/ZPY-3 MFAS AESA radar"],["IOC","Tháng 9/2023"],["Số kế hoạch mua","27 chiếc"]]}]},
+  variants:[{d:"RQ-4A (Block 10)",desc:"5 chiếc ACTD ban đầu; EMD từ 3/2001"},{d:"RQ-4B Block 20",desc:"Tải trọng cao hơn 50%; cơ sở cho các Block tiếp theo"},{d:"RQ-4B Block 30",desc:"Multi-INT: EO/IR, SAR, SIGINT/ELINT; IOC USAF 2011"},{d:"RQ-4B Block 40",desc:"AN/ZPY-2 MP-RTIP AESA radar; IOC USAF 2015"},{d:"EQ-4B",desc:"BACN — 5 chiếc Block 20 chuyển đổi; nghỉ hưu 2021"},{d:"RQ-4D Phoenix",desc:"NATO AGS — dựa trên Block 40; IOC 2/2021; 5 chiếc"},{d:"RQ-4E Euro Hawk",desc:"Bundeswehr Đức — EADS SIGINT; hủy sau 1 chiếc"},{d:"MQ-4C Triton",desc:"Navy BAMS — hàng hải, chống thời tiết; IOC 9/2023"},{d:"MQ-4D",desc:"Triton biến thể Đức PEGASUS — hủy 2020"}],
+  armament:["Không vũ khí (chỉ ISR)"],sensors:["SAR/MTI","EO/IR","SIGINT/ELINT (Block 30/40)","AN/ZPY-2 AESA MP-RTIP (Block 40)","AN/ZPY-3 MFAS AESA (MQ-4C)","Ăng-ten SATCOM 1.2 m"],
+  description:"Global Hawk là UAV HAE đầu tiên đưa vào hoạt động của USAF. DARPA phát hành RFP Tier II+ năm 1994; Teledyne Ryan thắng hợp đồng ACTD 3/1995. Bay lần đầu 2/1998. Có thể khảo sát 100,000 km² mỗi ngày và bay liên lục địa. Hoạt động trên Afghanistan, Iraq, Bắc Triều Tiên. Khoảng 45 chiếc RQ-4A/B được chế tạo; USAF lên kế hoạch nghỉ hưu năm 2027. MQ-4C Triton đạt IOC với Hải quân 9/2023; kế hoạch mua 27 chiếc. Australia là khách hàng ngoài Mỹ duy nhất của Triton tính đến 2024.",
+  notes:"Kế hoạch nghỉ hưu RQ-4B năm 2027 được hiểu là bằng chứng cho thấy các hệ thống thay thế bí mật như 'RQ-180' của Northrop Grumman đã hoạt động. Block 40 mang radar MP-RTIP có khả năng theo dõi cả mục tiêu tĩnh và di động trên diện rộng."},
+
+  {id:"q-7",designation:"RQ-7",name:"Shadow 200",manufacturer:"AAI Corporation (nay là L3Harris)",status:"Active",role:"Trinh sát / Giám sát / Chỉ thị mục tiêu chiến thuật",category:"TUAV",firstFlight:"1991 (prototype)",introduced:"2002",operators:["U.S. Army","U.S. Marine Corps (thay thế bởi RQ-21)","Nhiều đồng minh"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-7.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-7a.jpg",caption:"RQ-7A",credit:"AAI"},{url:"https://www.designation-systems.net/dusrm/app2/rq-7a-1.jpg",caption:"RQ-7A vận hành",credit:"U.S. Army"},{url:"https://www.designation-systems.net/dusrm/app2/rq-7b.jpg",caption:"RQ-7B (cánh lớn hơn)",credit:"AAI"}],
+  specs:{primary:{name:"RQ-7A",data:[["Chiều dài","3.40 m (11 ft 2 in)"],["Sải cánh","3.89 m (12 ft 9 in)"],["Chiều cao","0.91 m (3 ft)"],["TL tối đa","149 kg (328 lb)"],["TL rỗng","75 kg (165 lb)"],["Tốc độ tối đa","204 km/h (110 kts)"],["Tốc độ tuần tra","130 km/h (70 kts)"],["Trần bay","4,270 m (14,000 ft)"],["Tầm hoạt động","125 km (67 nm)"],["Thời gian bay","5 giờ"],["Động cơ","UEL AR-741 rotary; 28.3 kW (38 hp)"]]},variants_specs:[{name:"RQ-7B",data:[["Sải cánh","4.27 m (14 ft)"],["TL tối đa","170 kg (375 lb)"],["Tốc độ tối đa","194 km/h (105 kts)"],["Tốc độ tuần tra","111 km/h (60 kts)"],["Trần bay","4,570 m (15,000 ft)"],["Thời gian bay","7 giờ"]]}]},
+  variants:[{d:"RQ-7A (Block 1)",desc:"Sản xuất ban đầu — IAI Tamam POP EO/IR"},{d:"RQ-7B (Block 2)",desc:"Cánh lớn hơn, 7h bay, avionics nâng cấp, IMU, TCDL"},{d:"RQ-7B v2",desc:"Cải tiến thêm về tải trọng và cảm biến"}],
+  armament:["Không vũ khí (chỉ ISR)"],sensors:["IAI Tamam POP EO/IR turret (Block 1)","Wescam EO/IR (Block 2)","GPS navigation","TCDL datalink"],
+  description:"Shadow 200 là TUAV tầm ngắn được AAI phát triển trong những năm 1990. Nó đánh bại RQ-6 Outrider trong cuộc thi của U.S. Army năm 1999 và được phê duyệt sản xuất đầy đủ 10/2002. Hệ thống gồm 4 UAV + 2 GCS với datalink LOS và non-LOS. Army đặt hàng 33 hệ thống (4 máy bay/hệ thống) đến 3/2004 với kế hoạch tối đa 88 hệ thống. Được sử dụng rộng rãi tại Iraq và Afghanistan cho trinh sát, giám sát, chỉ thị mục tiêu và đánh giá thiệt hại (BDA).",
+  notes:"RQ-7B giới thiệu TCDL (Tactical Common Data Link) cho phép trao đổi dữ liệu nhanh hơn với các phương tiện mặt đất và không quân khác."},
+
+  {id:"q-8",designation:"RQ/MQ-8",name:"Fire Scout",manufacturer:"Northrop Grumman",status:"Retiring (MQ-8C nghỉ hưu ~2026)",role:"VTOL UAV hải quân — Trinh sát, Chỉ thị mục tiêu, Tấn công vũ trang",category:"VTOL UAV",firstFlight:"Tháng 1/2000 (unmanned)",introduced:"2006",operators:["U.S. Navy","U.S. Army (hủy 2010)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-8.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-8a.jpg",caption:"RQ-8A (Schweizer 330SP)",credit:"Northrop Grumman"},{url:"https://www.designation-systems.net/dusrm/app2/rq-8a-1.jpg",caption:"RQ-8A thử nghiệm tàu",credit:"Northrop Grumman"},{url:"https://www.designation-systems.net/dusrm/app2/mq-8b.jpg",caption:"MQ-8B",credit:"Northrop Grumman"},{url:"https://www.designation-systems.net/dusrm/app2/mq-8c.jpg",caption:"MQ-8C (Bell 407 based)",credit:"U.S. Navy"}],
+  specs:{primary:{name:"RQ-8A",data:[["Chiều dài","6.98 m (22 ft 11 in)"],["Đường kính rotor","8.38 m (27 ft 6 in)"],["Chiều cao","2.87 m (9 ft 5 in)"],["TL tối đa","1,200 kg (2,650 lb)"],["Tốc độ tối đa","231 km/h (144 mph)"],["Trần bay","6,100 m (20,000 ft)"],["Thời gian bay","5 giờ"],["Động cơ","Rolls-Royce 250-C20W; 310 kW (420 shp)"]]},variants_specs:[{name:"MQ-8B",data:[["Chiều dài","7.30 m (23.95 ft)"],["TL tối đa","1,430 kg (3,150 lb)"],["Thời gian bay","> 8 giờ"],["Vũ khí","AGR-20 APKWS II rockets"]]},{name:"MQ-8C (Bell 407)",data:[["Chiều dài","10.6 m (34.7 ft)"],["Đường kính rotor","11.2 m (36.6 ft)"],["Chiều cao","3.3 m (10.9 ft)"],["TL tối đa","2,700 kg (6,000 lb)"],["Tốc độ tối đa","260 km/h (160 mph)"],["Thời gian bay","15 giờ"],["Động cơ","Rolls-Royce 250-C47B; 606 kW (813 shp)"]]}]},
+  variants:[{d:"RQ-8A",desc:"Dựa trên Schweizer 330SP; LRIP đầu tiên 5/2001"},{d:"MQ-8B",desc:"Dựa trên Schweizer 333, rotor 4 cánh; 30 chiếc; nghỉ hưu 10/2022"},{d:"MQ-8C",desc:"Dựa trên Bell 407; lớn hơn, 15h bay; IOC 6/2019; 38 chiếc; nghỉ hưu ~2026"}],
+  armament:["AGR-20 APKWS II laser-guided 2.75-in rockets (MQ-8B/C)"],sensors:["EO/IR/LDRF turret","Telephonics AN/ZPY-4(V)1 radar (MQ-8B late)","Ku-Band TCDL"],
+  description:"Fire Scout là UAV VTOL tự động được Hải quân Mỹ chọn năm 2000 để thay thế RQ-2 Pioneer trên tàu chiến. RQ-8A dựa trên trực thăng Schweizer 330SP, bay lần đầu không người lái 1/2000. MQ-8B được Army chọn cho FCS UAS nhưng bị hủy 2010 — chỉ có Navy tiếp tục. Chỉ 30 chiếc MQ-8B được mua; nghỉ hưu 10/2022. MQ-8C (Bell 407) lớn hơn đáng kể với thời gian bay 15 giờ (gấp 3 lần MQ-8B), đạt IOC 6/2019. Navy lên kế hoạch nghỉ hưu toàn bộ MQ-8C trước 2026.",
+  notes:"Năm 2011/12, một số Fire Scouts được triển khai ở Afghanistan cho nhiệm vụ ISR. MQ-8B đã thực hiện các cuộc tấn công rocket APKWS từ tàu LCS."},
+
+  {id:"q-9",designation:"MQ-9",name:"Reaper (Predator B)",manufacturer:"General Atomics (GA-ASI)",status:"Active (USAF nghỉ hưu 2035)",role:"UAV Hunter-Killer đa nhiệm vũ trang",category:"MALE",firstFlight:"Tháng 2/2001",introduced:"2007",operators:["USAF","U.S. Navy (eval)","Anh (MQ-9B)","Ý","Pháp","Hà Lan","Tây Ban Nha","Bỉ","Australia"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-9.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/ymq-9a.jpg",caption:"YMQ-9A Predator B prototype",credit:"General Atomics"},{url:"https://www.designation-systems.net/dusrm/app2/mq-9a.jpg",caption:"MQ-9A Reaper",credit:"Sr.A. Larry E. Reid Jr., USAF"},{url:"https://www.designation-systems.net/dusrm/app2/mq-9a-1.jpg",caption:"MQ-9A trong chiến đấu",credit:"Lt.Col. Leslie Pratt, USAF"},{url:"https://www.designation-systems.net/dusrm/app2/mq-9b-skyguardian.jpg",caption:"MQ-9B SkyGuardian",credit:"General Atomics"},{url:"https://www.designation-systems.net/dusrm/app2/mq-9b.jpg",caption:"MQ-9B Protector RG.1 (RAF)",credit:"Royal Air Force"},{url:"https://www.designation-systems.net/dusrm/app2/mq-9b-seaguardian.jpg",caption:"MQ-9B SeaGuardian (hàng hải)",credit:"General Atomics"}],
+  specs:{primary:{name:"MQ-9A Reaper",data:[["Chiều dài","11 m (36 ft)"],["Sải cánh","20 m (66 ft)"],["Chiều cao","3.56 m (11 ft 8 in)"],["TL tối đa","4,760 kg (10,500 lb)"],["TL rỗng","1,380 kg (3,050 lb)"],["Tải trọng vũ khí","1,700 kg (3,750 lb)"],["Tốc độ tối đa","445 km/h (240 kts)"],["Trần bay","15,200 m (50,000 ft)"],["Thời gian bay","27 giờ"],["Động cơ","Honeywell TPE-331-10T turboprop; 671 kW (900 shp)"]]},variants_specs:[{name:"MQ-9A ER (Extended Range)",data:[["Thay đổi","Thùng nhiên liệu ngoài, càng cứng hơn"],["Thời gian bay","Tới 33 giờ (chế độ ISR)"],["Số nâng cấp","38 chiếc"]]},{name:"MQ-9B SkyGuardian",data:[["Sải cánh","24 m (79 ft)"],["TL tối đa","5,670 kg (12,500 lb)"],["Tốc độ tối đa","390 km/h (210 kts)"],["Trần bay","12,200 m (40,000 ft)"],["Thời gian bay","40 giờ"],["Đặc điểm","Tuân thủ không phận dân sự (STANAG 4671)"]]},{name:"MQ-9B SeaGuardian",data:[["Vai trò","Giám sát hàng hải, chống tàu ngầm (ASW)"],["Tầm hoạt động","2,200 km (1,200 nm) bán kính"],["Khả năng đặc biệt","Thả phao sonar, phát hiện mìn, khai thác mìn"]]}]},
+  variants:[{d:"YMQ-9A",desc:"2 prototype mua năm 2003"},{d:"MQ-9A",desc:"Reaper — biến thể USAF chính; 366 đặt hàng, 300+ giao"},{d:"MQ-9A ER",desc:"Extended Range — thùng nhiên liệu ngoài; 38 nâng cấp; tới 33h ISR"},{d:"MQ-9B SkyGuardian",desc:"Cánh dài hơn, tuân thủ không phận dân sự; RAF đặt hàng đầu (Protector RG.1)"},{d:"MQ-9B SeaGuardian",desc:"Hàng hải — sonobuoy, phát hiện mìn, tầm 2,200 km"},{d:"MQ-9B STOL",desc:"Bộ cải tiến cánh/đuôi cho cất hạ cánh ngắn từ tàu đổ bộ"}],
+  armament:["AGM-114 Hellfire (tối đa 8 quả)","GBU-12/B Paveway II (bom laser 500 lb)","GBU-38/B JDAM (bom GPS 500 lb)","GBU-49/B Enhanced Paveway II","GBU-54/B Laser JDAM","AIM-9X Sidewinder (xác nhận 9/2020 — đánh chặn tên lửa hành trình)"],sensors:["Raytheon AN/AAS-52(V) MTS EO/IR/Laser Designator turret","General Atomics AN/APY-8 Lynx SAR radar"],
+  description:"Reaper (Predator B) là UAV Hunter-Killer chủ lực của USAF, phát triển như dự án tư nhân của GA-ASI từ 1998, ban đầu tài trợ bởi NASA. Động cơ turboprop mạnh hơn nhiều cho phép bay ở 50,000 ft với 27h thời gian bay. Ký hiệu MQ-9A và đặt tên Reaper năm 2006. Ra mắt chiến đấu 2007 ở Afghanistan. Sử dụng rộng ở Afghanistan, Iraq, Yemen, Syria. USAF mất 12+ chiếc Reaper trên bầu trời Yemen 2023/24 do SAM Houthi. Hơn 300 chiếc đã giao cho USAF; nghỉ hưu dự kiến 2035. MQ-9B SkyGuardian được RAF đặt hàng đầu tiên, bắt đầu giao hàng cuối 2023.",
+  notes:"MQ-9B STOL có cánh gấp được thiết kế cho hoạt động từ boong tàu LHA. SeaGuardian có thể thực hiện nhiệm vụ ASW bằng cách thả phao sonar và hoạt động kết hợp với máy bay tuần tra P-8A."},
+
+  {id:"q-10",designation:"CQ-10",name:"SnowGoose",manufacturer:"MMIST (Canada)",status:"Limited",role:"UAV Parafoil — Tiếp tế / ISR tự động",category:"Parafoil UAV",firstFlight:"2003",introduced:"~2005",operators:["U.S. SOCOM"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-10.html",images:[],
+  specs:{primary:{name:"CQ-10A",data:[["TL tối đa","340 kg (750 lb)"],["TL rỗng","136 kg (300 lb)"],["Tốc độ","50 km/h"],["Trần bay","5,500 m (18,000 ft)"],["Tầm hoạt động","56 km"],["Thời gian bay","10 giờ"],["Động cơ","BMW F650 piston; 37 kW (50 hp)"]]}},
+  variants:[{d:"CQ-10A",desc:"Biến thể tiếp tế parafoil ban đầu"},{d:"CQ-10B",desc:"Cải tiến tải trọng và hiệu suất"}],
+  armament:["Không vũ khí"],sensors:["EO/IR (nhiệm vụ ISR)"],
+  description:"SnowGoose là UAV parafoil có động cơ được mua cho SOCOM cho nhiệm vụ tiếp tế bí mật và ISR. Có thể phóng từ máy bay và tự động thả hàng tại tọa độ chỉ định. Tiền tố 'C' trong ký hiệu chỉ vai trò tiếp tế (Cargo).",
+  notes:"Thiết kế parafoil cho phép bay êm, tốc độ chậm — phù hợp cho hậu cần bí mật trong vùng từ chối tiếp cận."},
+
+  {id:"q-11",designation:"RQ-11",name:"Raven",manufacturer:"AeroVironment",status:"Active",role:"Mini UAV mang vác — Trinh sát đơn vị nhỏ / Bảo vệ căn cứ",category:"SUAV / Mini UAV",firstFlight:"Tháng 10/2001 (proof-of-concept)",introduced:"2003",operators:["U.S. Army","USAF SOCOM","50+ quốc gia đồng minh"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-11.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-11.jpg",caption:"'Flashlight' proof-of-concept",credit:"UAV Forum"},{url:"https://www.designation-systems.net/dusrm/app2/rq-11-1.jpg",caption:"Block I Raven",credit:"AeroVironment/U.S. Army"},{url:"https://www.designation-systems.net/dusrm/app2/rq-11-2.jpg",caption:"Block II (RQ-11A)",credit:"AeroVironment/U.S. Army"},{url:"https://www.designation-systems.net/dusrm/app2/rq-11a.jpg",caption:"RQ-11A",credit:"U.S. Army"},{url:"https://www.designation-systems.net/dusrm/app2/rq-11b.jpg",caption:"RQ-11B Raven B",credit:"AeroVironment"}],
+  specs:{primary:{name:"RQ-11A",data:[["Chiều dài","1.1 m (3 ft 7 in)"],["Sải cánh","1.3 m (4 ft 3 in)"],["Trọng lượng","1.9 kg (4.2 lb)"],["Tốc độ","45–95 km/h (28–60 mph)"],["Trần bay","4,500 m (15,000 ft) / Bay thông thường 30–300 m"],["Tầm hoạt động","10 km (6.2 miles)"],["Thời gian bay","80 phút"],["Động cơ","Aveox 27/26/7-AV electric motor"]]}},
+  variants:[{d:"RQ-11A (Block II)",desc:"Ký hiệu chính thức cuối 2004; bệ phóng tay"},{d:"RQ-11B (Raven B)",desc:"GCS nhỏ hơn, laser illuminator, cảm biến cải tiến; thắng thi SUAV 2005"},{d:"RQ-11B BDDS",desc:"Tích hợp Battlefield Dismounted Digital System"}],
+  armament:["Không vũ khí"],sensors:["Camera màu CCD","Camera hồng ngoại","Hệ thống GPS","Laser illuminator (RQ-11B)"],
+  description:"Raven là UAV phóng tay nhỏ phát triển từ FQM-151 Pointer của AeroVironment theo chương trình Army Pathfinder ACTD. 'Flashlight' proof-of-concept bay lần đầu 10/2001. Block I giao hàng 5/2003; Block II (RQ-11A) được đánh giá ở Afghanistan và dùng trong Chiến dịch Tự do Iraq. Hơn 1,300 chiếc được chế tạo đến đầu 2005, 2,000+ theo hợp đồng. SOCOM mua 179 hệ thống (3 máy bay/hệ thống). Trên 19,000 chiếc đã được sản xuất cho quân đội Mỹ và đồng minh — một trong những UAV quân sự được sử dụng rộng rãi nhất thế giới. Một binh sĩ có thể vận hành một mình.",
+  notes:"Bay ở độ cao 30–300 m. Có thể tự động quay về điểm xuất phát chỉ bằng một nút bấm. Được sử dụng cho trinh sát đô thị (MOUT) và bảo vệ lực lượng."},
+
+  {id:"q-12",designation:"RQ-12",name:"Wasp AE",manufacturer:"AeroVironment",status:"Active",role:"Micro UAV cấp phân đội — ISR / Hàng hải",category:"Micro UAV",firstFlight:"2002",introduced:"~2008",operators:["U.S. Army","USMC","USSOCOM"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-12.html",images:[],
+  specs:{primary:{name:"RQ-12A",data:[["Chiều dài","0.38 m (15 in)"],["Sải cánh","0.75 m (29.5 in)"],["Trọng lượng","0.43 kg (0.95 lb)"],["Tốc độ","65 km/h (35 kts)"],["Trần bay","4,572 m (15,000 ft)"],["Tầm hoạt động","5 km"],["Thời gian bay","45 phút"],["Động cơ","Electric motor"]]}},
+  variants:[{d:"RQ-12A",desc:"Wasp AE — chống nước, có thể hạ cánh trên mặt nước"}],
+  armament:["Không vũ khí"],sensors:["Camera EO","Camera IR"],
+  description:"Wasp AE (All Environment) là UAV siêu nhỏ cho trinh sát cấp phân đội. Chống nước hoàn toàn cho môi trường hàng hải — có thể phóng tay và hạ cánh trên mặt nước để thu hồi. Là UAS nhỏ đầu tiên được FAA chấp thuận bay thương mại trên mặt nước.",
+  notes:"'AE' = All Environment (Mọi môi trường), đề cập đến khả năng chống nước cho hoạt động biển/ven biển."},
+
+  {id:"q-14",designation:"RQ-14",name:"Dragon Eye / Swift",manufacturer:"AeroVironment / BAE Systems",status:"Limited/Retired",role:"UAV nhỏ mang vác — ISR cấp USMC",category:"SUAV",firstFlight:"2001",introduced:"2003",operators:["U.S. Marine Corps"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-14.html",images:[],
+  specs:{primary:{name:"RQ-14A Dragon Eye",data:[["Chiều dài","0.91 m (3 ft)"],["Sải cánh","1.14 m (3 ft 9 in)"],["Trọng lượng","2.7 kg (6 lb)"],["Tốc độ","72 km/h (39 kts)"],["Trần bay","3,050 m (10,000 ft)"],["Tầm hoạt động","10 km"],["Thời gian bay","1 giờ"],["Động cơ","2 × electric motors"]]}},
+  variants:[{d:"RQ-14A",desc:"Dragon Eye — UAV 2 động cơ mang vác cho USMC"},{d:"RQ-14B",desc:"Swift — biến thể cải tiến từ BAE Systems"}],
+  armament:["Không vũ khí"],sensors:["Camera CCD (nhìn thẳng và nhìn nghiêng)"],
+  description:"Dragon Eye là UAV nhỏ mang vác được phát triển cho USMC theo chương trình SURSS (Small Unit Remote Scouting System). Có thể phóng tay và đủ im lặng cho hoạt động bí mật.",
+  notes:"Dragon Eye đặt nền tảng cho RQ-20 Puma AE trong biên chế USMC."},
+
+  {id:"q-16",designation:"RQ-16",name:"T-Hawk (Tarantula Hawk)",manufacturer:"Honeywell",status:"Limited",role:"Micro Air Vehicle — ISR đô thị / Trinh sát gần",category:"Micro UAV / MAV",firstFlight:"2003",introduced:"2007",operators:["U.S. Army","U.S. Navy EOD"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-16.html",images:[],
+  specs:{primary:{name:"RQ-16A",data:[["Đường kính","0.33 m (13 in)"],["Chiều cao","0.33 m"],["Trọng lượng","8.4 kg (18.5 lb)"],["Tốc độ","130 km/h (70 kts)"],["Trần bay","3,050 m (10,000 ft)"],["Tầm hoạt động","11 km"],["Thời gian bay","45 phút"],["Động cơ","Honeywell ducted fan; 26 kW (35 hp)"]]}},
+  variants:[{d:"RQ-16A",desc:"T-Hawk — một ducted fan VTOL MAV, không có cánh quạt lộ"}],
+  armament:["Không vũ khí"],sensors:["Camera EO/IR (gimbal xoay)"],
+  description:"T-Hawk (Tarantula Hawk) là MAV VTOL với ducted fan — không có cánh quạt lộ ra ngoài, cho phép hoạt động an toàn trong đô thị và trong nhà. Được phát triển theo chương trình MAV của U.S. Army. Nổi tiếng khi được sử dụng tại Fukushima Daiichi (4/2011) để kiểm tra các tòa nhà lò phản ứng hạt nhân bị hỏng, cung cấp video quan trọng về thảm họa.",
+  notes:"T-Hawk cũng được sử dụng để phát hiện IED và EOD tại Iraq và Afghanistan."},
+
+  {id:"q-20",designation:"RQ-20",name:"Puma AE",manufacturer:"AeroVironment",status:"Active",role:"SUAV chiến thuật — ISR Hàng hải & Đất liền",category:"SUAV",firstFlight:"2007",introduced:"2008",operators:["U.S. Army","USSOCOM","U.S. Navy","Nhiều đồng minh"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-20.html",images:[],
+  specs:{primary:{name:"RQ-20A",data:[["Chiều dài","1.4 m (4 ft 7 in)"],["Sải cánh","2.8 m (9 ft 2 in)"],["Trọng lượng","6.1 kg (13.5 lb)"],["Tốc độ","83 km/h (45 kts)"],["Trần bay","4,572 m (15,000 ft)"],["Tầm hoạt động","15 km"],["Thời gian bay","3.5 giờ"],["Động cơ","Electric motor"]]}},
+  variants:[{d:"RQ-20A",desc:"Puma AE — chống nước, có thể hạ cánh trên mặt nước"},{d:"RQ-20B",desc:"Puma LE — thời gian bay mở rộng đáng kể"}],
+  armament:["Không vũ khí"],sensors:["Camera EO","Camera IR","Payload SIGINT (tùy chọn)"],
+  description:"Puma AE (All Environment) là UAV phóng tay cho trinh sát hàng hải và đất liền. Chống nước hoàn toàn — có thể phóng và thu hồi trên mặt nước, lý tưởng cho tàu chiến và xuồng. Là UAS nhỏ đầu tiên được FAA phê duyệt bay thương mại trên mặt nước. Được SOCOM sử dụng rộng rãi.",
+  notes:"RQ-20B Puma LE bổ sung thời gian bay dài hơn đáng kể. Được xuất khẩu rộng rãi cho các lực lượng tác chiến đặc biệt đồng minh."},
+
+  {id:"q-21",designation:"RQ-21",name:"Blackjack",manufacturer:"Boeing / Insitu",status:"Active",role:"UAS chiến thuật nhỏ — ISR Hải quân/USMC",category:"SUAV",firstFlight:"Tháng 7/2012",introduced:"2014",operators:["U.S. Navy","U.S. Marine Corps"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-21.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-21a.jpg",caption:"RQ-21A Blackjack",credit:"USMC, Lance Cpl. Rhita Daniel"},{url:"https://www.designation-systems.net/dusrm/app2/rq-21a-1.jpg",caption:"RQ-21A phóng",credit:"Insitu"}],
+  specs:{primary:{name:"RQ-21A",data:[["Chiều dài","2.5 m (8.2 ft)"],["Sải cánh","4.8 m (15.7 ft)"],["TL tối đa","61 kg (136 lb)"],["Tải trọng tối đa","17.7 kg (39 lb)"],["Tốc độ","167 km/h (104 mph)"],["Trần bay","> 5,940 m (19,500 ft)"],["Tầm hoạt động","93 km (50 nm)"],["Thời gian bay","16 giờ"],["Động cơ","Piston; 5.9 kW (8 hp)"]]}},
+  variants:[{d:"RQ-21A",desc:"Blackjack — ray launcher hơi ép, thu hồi 'skyhook'; 31 hệ thống (5 UAV/hệ thống)"},{d:"MQ-21A",desc:"Ký hiệu USMC không chính thức (chưa được xác nhận)"}],
+  armament:["Không vũ khí"],sensors:["Hình ảnh EO/IR","Laser range-finder","IR markers","Communications relay"],
+  description:"Blackjack là biến thể của Boeing/Insitu Integrator UAV, thắng cuộc thi Navy STUAS 6/2010. Bay lần đầu 7/2012. Phóng bằng ray launcher hơi ép (từ tàu hoặc đất) và thu hồi bằng hệ thống 'skyhook' sáng tạo — dây thẳng đứng bắt cánh máy bay và xoay nó xuống đất. USMC tuyên bố IOC 2016; thay thế RQ-7 Shadow trong biên chế USMC. Đến 2023, Navy/Marines có 31 hệ thống (5 máy bay/hệ thống).",
+  notes:"Hệ thống skyhook loại bỏ yêu cầu đường băng hoặc thiết bị hãm, cho phép hoạt động trên tàu và sân bay dã chiến."},
+
+  {id:"q-24",designation:"CQ-24",name:"K-MAX",manufacturer:"Kaman Aerospace / Lockheed Martin",status:"Limited/Active",role:"UAV trực thăng vận chuyển hàng hóa tự động",category:"VTOL / Cargo UAV",firstFlight:"2011 (unmanned cargo)",introduced:"2011",operators:["U.S. Marine Corps (Afghanistan)","U.S. Army (eval)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-24.html",images:[],
+  specs:{primary:{name:"CQ-24A",data:[["Chiều dài","15.8 m (52 ft)"],["Đường kính rotor","14.7 m (48 ft)"],["TL tối đa","5,443 kg (12,000 lb)"],["Tải hàng hóa","2,722 kg (6,000 lb)"],["Tốc độ","185 km/h (100 kts)"],["Trần bay","4,572 m (15,000 ft)"],["Tầm hoạt động","250 km"],["Thời gian bay","4 giờ"],["Động cơ","Honeywell T53-17A turboshaft; 1,342 kW (1,800 shp)"]]}},
+  variants:[{d:"CQ-24A",desc:"K-MAX không người lái — intermeshing-rotor helicopter"}],
+  armament:["Không vũ khí"],sensors:["Cảm biến điều hướng","Tránh chướng ngại vật"],
+  description:"K-MAX là trực thăng intermeshing-rotor (2 rotor khớp, không cần rotor đuôi) chuyển đổi thành UAV hàng hóa bởi Kaman và Lockheed Martin. Được triển khai tại Afghanistan năm 2011, thực hiện các nhiệm vụ tiếp tế hàng hóa tự động đầu tiên trong chiến đấu — giao hơn 680 tấn hàng. Tiền tố 'C' chỉ nhiệm vụ vận chuyển (Cargo).",
+  notes:"Ở Afghanistan, K-MAX giảm thiểu nhu cầu các đoàn xe tiếp tế nguy hiểm, cứu nhiều sinh mạng. Thiết kế intermeshing rotor tối đa hóa hiệu quả nâng tải."},
+
+  {id:"q-25",designation:"MQ-25",name:"Stingray",manufacturer:"Boeing",status:"Development / IOC dự kiến 2026",role:"UAV tiếp nhiên liệu trên tàu sân bay (phụ: ISR)",category:"Carrier-Based UAV",firstFlight:"Tháng 9/2019",introduced:"IOC 2026 (dự kiến, CVN-71)",operators:["U.S. Navy"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-25.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/mq-25a.jpg",caption:"MQ-25A Stingray",credit:"Boeing"},{url:"https://www.designation-systems.net/dusrm/app2/mq-25a-1.jpg",caption:"MQ-25A thử nghiệm tiếp nhiên liệu",credit:"Boeing"},{url:"https://www.designation-systems.net/dusrm/app2/mq-25a-2.jpg",caption:"MQ-25A trên boong tàu",credit:"Boeing"}],
+  specs:{primary:{name:"MQ-25A",data:[["Chiều dài","15.5 m (51 ft)"],["Sải cánh","22.9 m (75 ft)"],["Chiều cao","3.0 m (9.8 ft)"],["Nhiên liệu có thể chuyển giao","7,250 kg (16,000 lb)"],["Bán kính tiếp dầu","930 km (580 miles)"],["Động cơ","Rolls-Royce AE3700N turbofan; >44 kN (10,000 lbf)"],["Trọng lượng","Chưa công bố"],["Tốc độ","Chưa công bố"],["Trần bay","Chưa công bố"]]}},
+  variants:[{d:"ZRAQ-25A",desc:"UCLASS — khái niệm ISR/tấn công tàng hình (hủy 2016)"},{d:"ZMQ-25A",desc:"CBARS — tái thiết kế thành tanker"},{d:"MQ-25A",desc:"Stingray — tanker sản xuất; 76 chiếc kế hoạch; IOC CVN-71 2026"}],
+  armament:["Không vũ khí (chỉ tanker; ISR phụ)"],sensors:["ISR suite (chi tiết chưa công bố)","Thiết bị tàu sân bay: cánh gấp, móc hãm, càng chắc chắn"],
+  description:"Stingray là UAV trên tàu sân bay đầu tiên của Hải quân Mỹ. Phát triển từ chương trình UCLASS (tàng hình ISR/tấn công), được tái định hướng thành CBARS (tanker) năm 2016. Boeing thắng hợp đồng 10/2018 dựa trên prototype riêng từ 2014. Bay lần đầu 9/2019; thử nghiệm tiếp nhiên liệu đầu tiên 6/2021; thử nghiệm boong tàu 12/2021. Có thể chuyển giao 7,250 kg nhiên liệu ở bán kính 930 km. Điều khiển bởi GCS MD-5C (tàu sân bay), MD-5D (mặt đất), MD-5E (di động). Kế hoạch 76 chiếc; IOC trên CVN-71 Theodore Roosevelt năm 2026.",
+  notes:"Bằng cách tiếp quản vai trò tiếp dầu từ F/A-18, MQ-25 giải phóng các tiêm kích để thực hiện nhiệm vụ tấn công, mở rộng đáng kể tầm tác chiến của nhóm tàu sân bay."},
+
+  {id:"q-27",designation:"MQ-27",name:"ScanEagle",manufacturer:"Boeing / Insitu",status:"Active",role:"ISR tầm xa bền bỉ — Tàu/Đất liền",category:"SUAV",firstFlight:"2002",introduced:"2004",operators:["U.S. Navy","USMC","U.S. Army","SOCOM","40+ đồng minh"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-27.html",images:[],
+  specs:{primary:{name:"MQ-27A",data:[["Chiều dài","1.55 m (5 ft 1 in)"],["Sải cánh","3.11 m (10 ft 2 in)"],["Chiều cao","0.3 m (1 ft)"],["TL tối đa","22 kg (48 lb)"],["Tốc độ","148 km/h (80 kts)"],["Trần bay","4,877 m (16,000 ft)"],["Tầm hoạt động","100 km"],["Thời gian bay","24+ giờ"],["Động cơ","3W-28i piston; 1.5 kW (2 hp)"]]}},
+  variants:[{d:"MQ-27A",desc:"ScanEagle — phóng catapult khí nén, thu hồi SkyHook hoặc lưới"},{d:"ScanEagle 2",desc:"Phiên bản thương mại cải tiến"}],
+  armament:["Không vũ khí"],sensors:["EO/IR (gimbal xoay)","SAR tùy chọn","SIGINT tùy chọn"],
+  description:"ScanEagle là UAV ISR bền bỉ phóng bằng catapult khí nén SuperWedge và thu hồi bằng SkyHook của Insitu. Ban đầu phát triển cho giám sát nghề cá thương mại, phiên bản quân sự được quân đội Mỹ áp dụng. Hoạt động từ tàu và mặt đất, cung cấp giám sát liên tục 24h+. Một trong những UAV nhỏ được xuất khẩu rộng rãi nhất thế giới.",
+  notes:"ScanEagle được sử dụng rộng rãi ở Iraq và Afghanistan cho bảo vệ đoàn xe và giám sát khu vực bền bỉ. Hơn 1,000 giờ bay mỗi tháng trong giai đoạn cao điểm."},
+
+  {id:"mq-20",designation:"MQ-20",name:"Avenger (Predator C)",manufacturer:"General Atomics (GA-ASI)",status:"Development / Limited (khách hàng bí mật)",role:"MALE UCAV tàng hình vũ trang / ISR",category:"MALE UCAV",firstFlight:"4 Tháng 4/2009",introduced:"N/A",operators:["USAF (1 eval)","Khách hàng chính phủ Mỹ bí mật (7 chiếc, báo cáo 2017)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/mq-20.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/mq-20a.jpg",caption:"MQ-20A Avenger (Predator C)",credit:"USAF"}],
+  specs:{primary:{name:"MQ-20A",data:[["Chiều dài","13 m (44 ft)"],["Sải cánh","20 m (66 ft)"],["TL tối đa","8,255 kg (18,200 lb)"],["Tải trọng tổng","1,360 kg (3,000 lb)"],["Tốc độ","740 km/h (460 mph)"],["Trần bay","> 15,240 m (50,000 ft)"],["Thời gian bay","20 giờ"],["Động cơ","Pratt & Whitney PW545B turbofan; 17.8 kN (4,000 lbf)"]]}},
+  variants:[{d:"Avenger (MQ-20A)",desc:"Jet, khoang vũ khí bên trong, tính năng tàng hình nhất định"},{d:"Avenger ER",desc:"Biến thể tầm xa với thùng nhiên liệu conformal"}],
+  armament:["GBU-31/32/38 JDAM","GBU-12/49/16/48 Paveway","GBU-39/B Small Diameter Bomb (SDB)","AGM-114 Hellfire"],sensors:["AN/APY-8 Lynx SAR","Biến thể EOTS F-35 (EO/IR targeting)","Gimbal turret thu vào được"],
+  description:"Avenger (Predator C) là UCAV động cơ phản lực của GA-ASI, phát triển như dự án tư nhân. Sử dụng cùng GCS với các Predator trước. Đặc điểm tàng hình: khoang vũ khí bên trong (tổng 1,360 kg tải, 6 giá treo ngoài tùy chọn) và ống xả hình chữ S. Bay lần đầu 4/4/2009. USAF đánh giá một chiếc như 'MQ-X' thay thế MQ-9 nhưng hủy 2012. GA-ASI báo cáo bán 7 chiếc cho khách hàng chính phủ Mỹ bí mật năm 2017.",
+  notes:"Ghi chú ký hiệu: MQ-20A không theo thứ tự (Q-20 là RQ-20 Puma AE). Cả MQ-20A lẫn ký hiệu cũ YQ-11 đều không được phân bổ chính thức. Boeing đã mất dấu trong cuộc thi MQ-X trước khi chương trình bị hủy."},
+
+  {id:"q-58",designation:"XQ-58",name:"Valkyrie",manufacturer:"Kratos Defense & Security Solutions",status:"Development / Testing (Block 2; MQ-58B kế hoạch)",role:"UCAV thử nghiệm / Loyal Wingman / Attritable Strike",category:"UCAV / Attritable",firstFlight:"Tháng 3/2019",introduced:"N/A",operators:["USAF (AFRL)","U.S. Marine Corps (2 eval)","U.S. Navy (2 eval)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-58.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/xq-58a.jpg",caption:"XQ-58A chuyến bay đầu tiên",credit:"88 Air Base Wing PA, USAF"},{url:"https://www.designation-systems.net/dusrm/app2/xq-58a-2.jpg",caption:"XQ-58A trong chuyến bay",credit:"USAF"},{url:"https://www.designation-systems.net/dusrm/app2/xq-58a-1.jpg",caption:"XQ-58A Block 2",credit:"MSgt. Tristan McIntire, USAF"}],
+  specs:{primary:{name:"XQ-58A",data:[["Chiều dài","9.1 m (30 ft)"],["Sải cánh","8.2 m (27 ft)"],["Chiều cao","2.5 m (8.3 ft)"],["TL rỗng","1,130 kg (2,500 lb)"],["TL tối đa","2,720 kg (6,000 lb)"],["Tốc độ","Mach 0.85"],["Trần bay","13,700 m (45,000 ft)"],["Tầm hoạt động","5,500 km (3,500 miles)"],["Tải trọng","270 kg bên trong + 270 kg giá treo cánh"],["Động cơ","Turbojet đơn; 8.9 kN (2,000 lbf)"]]}},
+  variants:[{d:"XQ-58A Block 1",desc:"Thiết kế ban đầu; bay lần đầu 3/2019"},{d:"XQ-58A Block 2",desc:"Cấu hình hiện tại; bay lần đầu 2022"},{d:"MQ-58B",desc:"Biến thể sản xuất USMC kế hoạch cho nhiệm vụ SEAD (MUX TACAIR)"}],
+  armament:["Khoang bên trong: SDB (Small Diameter Bomb)","AIM-120 AMRAAM (đã thử nghiệm)","Payload: 270 kg bên trong + 270 kg giá treo cánh"],sensors:["EO/IR","AESA radar (kế hoạch)","AI Skyborg autonomous pilot (demo 8/2023)"],
+  description:"Valkyrie là UCAV attritable chi phí thấp phát triển theo chương trình LCASD (Low Cost Attritable Strike Demonstrator) của AFRL. Kratos phát triển thiết kế XQ-222, ký hiệu XQ-58A năm 2017. Phóng bằng rocket booster từ trailer và thu hồi bằng dù — không cần đường băng. Tầm hoạt động 5,500 km với turbojet nhỏ. Các thành tựu: đạt dải hiệu suất đầy đủ, thả SDB từ khoang bên trong, relay dữ liệu giữa F-35 và F-22, đóng vai 'loyal wingman'. Bay tự động bởi AI Skyborg của USAF 8/2023. USMC và Navy mỗi bên mua 2 chiếc; USMC thử nghiệm payload Electronic Attack với F-35. USMC lên kế hoạch MQ-58B cho nhiệm vụ SEAD.",
+  notes:"Ghi chú ký hiệu: Số 58 lấy từ series X (giữa X-57A và X-59A); không có X-58A. Chưa rõ tại sao dùng XQ-58A thay vì X-58A."},
+
+  {id:"q-170",designation:"RQ-170",name:"Sentinel",manufacturer:"Lockheed Martin (Skunk Works)",status:"Active",role:"UAV HALE tàng hình — Trinh sát chiến lược",category:"Stealth HALE",firstFlight:"Tháng 12/2005",introduced:"2007 (Kandahar)",operators:["USAF (Phi đội 30 và 44 Trinh sát, Creech AFB)"],sourceUrl:"https://www.designation-systems.net/dusrm/app2/q-170.html",
+  images:[{url:"https://www.designation-systems.net/dusrm/app2/rq-170.jpg",caption:"RQ-170 Sentinel",credit:"USAF"},{url:"https://www.designation-systems.net/dusrm/app2/rq-170-1.jpg",caption:"RQ-170 trong chuyến bay",credit:"@AircraftSpots"}],
+  specs:{primary:{name:"RQ-170A (ước tính)",data:[["Chiều dài","4.5 m (14 ft 9 in)"],["Sải cánh","11.8 m (38 ft 7 in)"],["Chiều cao","1.8 m (6 ft)"],["Trần bay","15,000 m (50,000 ft)"],["Thời gian bay","5–6 giờ"],["Động cơ","1 × turbofan (bí mật)"],["Lưu ý","TẤT CẢ số liệu là ước tính — USAF chưa công bố thông tin chính thức"]]}},
+  variants:[{d:"RQ-170A",desc:"Sentinel (ký hiệu đầy đủ có thể — chưa chính thức xác nhận)"}],
+  armament:["Không vũ khí xác nhận (chỉ ISR)"],sensors:["EO/IR (khoang bụng)","Radar nhìn nghiêng","SATCOM (u nhô lưng)","SIGINT (giả định)"],
+  description:"Sentinel là UAV cánh bay tàng hình từ Skunk Works của Lockheed. Phát triển sau 11/9/2001 theo yêu cầu AFRCO cho nền tảng ISR tiền phương tàng hình. Dựa một phần trên thiết kế Manta tự tài trợ của công ty. Kiểm tra mặt đất đầu 2005; bay lần đầu 12/2005. Triển khai Kandahar 2007 nhưng chưa công nhận công khai đến 12/2009. Nhiệm vụ chủ chốt: Thu thập ISR cho Chiến dịch Neptune Spear (cuộc đột kích Bin Laden, 5/2011). Cũng bay trinh sát trong không phận Iran. Tháng 12/2011, một RQ-170 hạ cánh gần như nguyên vẹn trên đất Iran (Iran tuyên bố phá tín hiệu GPS để kiểm soát — bị nghi ngờ cao). Đã chế tạo 20–30 chiếc. Hiện vận hành bởi Phi đội Trinh sát 30 và 44 tại Creech AFB.",
+  notes:"Ghi chú ký hiệu: Số 170 lấy từ ký hiệu dự án nội bộ P-170 của Lockheed Martin. Biệt danh không chính thức: 'Wraith' và 'Beast of Kandahar' (tên đầu tiên khi bị phát hiện tại Kandahar 2007)."}
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let filters = { status: 'all', cat: 'all' };
+let selectedId = null;
+let activeImgIdx = 0;
+let currentSpecTab = 0;
+
+// ============================================================
+// HELPERS
+// ============================================================
+function getStatusClass(status) {
+  const s = status.toLowerCase();
+  if (s.includes('active') && !s.includes('retired')) return 'badge-status-active';
+  if (s.includes('retired') || s.includes('hưu')) return 'badge-status-retired';
+  if (s.includes('cancelled') || s.includes('hủy')) return 'badge-status-cancelled';
+  if (s.includes('development') || s.includes('testing') || s.includes('phát triển') || s.includes('dự kiến')) return 'badge-status-dev';
+  return 'badge-status-limited';
+}
+function getStatusDot(status) {
+  const s = status.toLowerCase();
+  if (s.includes('active') && !s.includes('retired')) return '#10b981';
+  if (s.includes('retired') || s.includes('hưu')) return '#64748b';
+  if (s.includes('cancelled') || s.includes('hủy')) return '#ef4444';
+  if (s.includes('development') || s.includes('testing')) return '#8b5cf6';
+  return '#f59e0b';
+}
+function matchFilter(uav) {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  if (q && !uav.designation.toLowerCase().includes(q) && !uav.name.toLowerCase().includes(q) && !uav.manufacturer.toLowerCase().includes(q) && !uav.role.toLowerCase().includes(q)) return false;
+  if (filters.status !== 'all') {
+    const s = uav.status.toLowerCase();
+    if (filters.status === 'active' && !(s.includes('active') && !s.includes('retired') && !s.includes('hưu'))) return false;
+    if (filters.status === 'retired' && !(s.includes('retired') || s.includes('hưu'))) return false;
+    if (filters.status === 'development' && !(s.includes('development') || s.includes('testing') || s.includes('dự kiến'))) return false;
+    if (filters.status === 'cancelled' && !(s.includes('cancelled') || s.includes('hủy'))) return false;
+    if (filters.status === 'limited' && !s.includes('limited')) return false;
+  }
+  if (filters.cat !== 'all') {
+    const c = uav.category.toLowerCase();
+    if (filters.cat === 'hale' && !c.includes('hale')) return false;
+    if (filters.cat === 'male' && !c.includes('male')) return false;
+    if (filters.cat === 'tuav' && !c.includes('tuav')) return false;
+    if (filters.cat === 'suav' && !(c.includes('suav') || c.includes('mini') || c.includes('micro') || c.includes('parafoil'))) return false;
+    if (filters.cat === 'vtol' && !c.includes('vtol')) return false;
+    if (filters.cat === 'ucav' && !c.includes('ucav')) return false;
+    if (filters.cat === 'attritable' && !c.includes('attritable')) return false;
+  }
+  return true;
+}
+
+// ============================================================
+// RENDER SIDEBAR
+// ============================================================
+function renderList() {
+  const list = document.getElementById('uavList');
+  const filtered = UAV_DATA.filter(matchFilter);
+  document.getElementById('listCount').textContent = `${filtered.length} kết quả`;
+  document.getElementById('totalCount').textContent = UAV_DATA.length;
+  document.getElementById('activeCount').textContent = UAV_DATA.filter(u => u.status.toLowerCase().includes('active') && !u.status.toLowerCase().includes('retired')).length;
+  document.getElementById('retiredCount').textContent = UAV_DATA.filter(u => u.status.toLowerCase().includes('retired') || u.status.toLowerCase().includes('hưu')).length;
+  
+  list.innerHTML = filtered.map(uav => {
+    const img = uav.images && uav.images[0] ? `<img src="${uav.images[0].url}" alt="${uav.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:18px">✈️</div>` : `<span>✈️</span>`;
+    return `<div class="uav-card ${selectedId===uav.id?'active':''}" onclick="selectUAV('${uav.id}')">
+      <div class="card-img">${img}</div>
+      <div class="card-info">
+        <div class="card-desig">${uav.designation}</div>
+        <div class="card-name">${uav.name}</div>
+        <div class="card-mfr">${uav.manufacturer}</div>
+      </div>
+      <div class="card-status" style="background:${getStatusDot(uav.status)}"></div>
+    </div>`;
+  }).join('');
+}
+
+// ============================================================
+// RENDER DETAIL
+// ============================================================
+function selectUAV(id) {
+  selectedId = id;
+  activeImgIdx = 0;
+  currentSpecTab = 0;
+  renderList();
+  renderDetail();
+}
+
+function renderDetail() {
+  const uav = UAV_DATA.find(u => u.id === selectedId);
+  if (!uav) return;
+  const detail = document.getElementById('detail');
+  const imgs = uav.images || [];
+  
+  // Gallery
+  let galleryHtml = '';
+  if (imgs.length > 0) {
+    const thumbs = imgs.slice(1).map((img, i) => `
+      <div class="hero-thumb ${activeImgIdx===i+1?'active':''}" onclick="switchImg(${i+1})">
+        <img src="${img.url}" alt="${img.caption}" onerror="this.parentElement.querySelector('.thumb-cap').textContent='(không tải được)'">
+        <div class="thumb-cap">${img.caption}</div>
+      </div>`).join('');
+    galleryHtml = `
+      <div class="hero-gallery">
+        <div class="hero-main">
+          <img id="mainImg" src="${imgs[activeImgIdx].url}" alt="${imgs[activeImgIdx].caption}" style="width:100%;height:100%;object-fit:cover" onerror="this.innerHTML='<div class=no-image><span>✈️</span><p>Hình ảnh không khả dụng</p></div>'">
+        </div>
+        ${imgs.length > 1 ? `<div class="hero-thumbs">${thumbs}</div>` : ''}
+      </div>`;
+  } else {
+    galleryHtml = `<div style="height:260px;display:flex;align-items:center;justify-content:center;background:var(--surface2);gap:12px;color:var(--muted)"><span style="font-size:60px;opacity:.4">✈️</span><div><p style="font-size:16px;color:var(--text)">Không có hình ảnh</p><p style="font-size:12px">Hình ảnh chưa được công bố hoặc bị mật</p></div></div>`;
+  }
+
+  // Image caption bar
+  const captionBar = imgs.length > 0 ? `<div style="background:rgba(0,0,0,.6);padding:4px 20px;font-size:11px;color:var(--muted);display:flex;gap:4px">
+    ${imgs.map((img,i) => `<span onclick="switchImg(${i})" style="cursor:pointer;padding:2px 6px;border-radius:3px;background:${i===activeImgIdx?'var(--accent)':'transparent'};color:${i===activeImgIdx?'#fff':'var(--muted)'}">${img.caption}</span>`).join('')}
+    ${imgs[activeImgIdx]?.credit ? `<span style="margin-left:auto;opacity:.7">📷 ${imgs[activeImgIdx].credit}</span>` : ''}
+  </div>` : '';
+
+  // Specs
+  const sp = uav.specs || {};
+  const primarySpec = sp.primary || null;
+  const varSpecs = sp.variants_specs || [];
+  const allSpecTabs = primarySpec ? [primarySpec, ...varSpecs] : varSpecs;
+  
+  let specsHtml = '';
+  if (allSpecTabs.length > 0) {
+    const tabs = allSpecTabs.map((s,i) => `<button class="spec-tab ${i===currentSpecTab?'active':''}" onclick="switchSpecTab(${i})">${s.name}</button>`).join('');
+    const currentSpec = allSpecTabs[currentSpecTab];
+    const rows = currentSpec.data.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+    specsHtml = `
+      <div class="specs-tabs">${tabs}</div>
+      <table class="specs-table">
+        <thead><tr><th>Thông số</th><th>Giá trị</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  } else {
+    specsHtml = `<p style="color:var(--muted);font-style:italic;font-size:13px">Thông số kỹ thuật chưa được công bố hoặc bị mật.</p>`;
+  }
+
+  // Variants
+  const variantsHtml = (uav.variants || []).map(v => `
+    <div class="variant-card">
+      <div class="variant-desig">${v.d}</div>
+      <div class="variant-desc">${v.desc}</div>
+    </div>`).join('');
+
+  // Armament
+  const none = !uav.armament || uav.armament.length === 0 || (uav.armament.length === 1 && (uav.armament[0].toLowerCase().includes('không') || uav.armament[0].toLowerCase().includes('none') || uav.armament[0].toLowerCase().includes('no ')));
+  const armHtml = none ? `<p class="arm-none">🟢 Không có vũ khí trang bị (chỉ ISR/tiếp tế)</p>` : uav.armament.map(a => `<div class="arm-item">${a}</div>`).join('');
+
+  // Sensors
+  const sensHtml = (uav.sensors||[]).map(s => `<div class="sensor-item">📡 ${s}</div>`).join('');
+
+  // Operators
+  const opHtml = (uav.operators||[]).map(o => `<div class="op-item">🏳️ ${o}</div>`).join('');
+
+  detail.innerHTML = `
+    <div class="detail-hero">
+      ${galleryHtml}
+      ${captionBar}
+      <div class="hero-overlay">
+        <div class="hero-designation">${uav.designation}</div>
+        <div class="hero-name">${uav.name}</div>
+        <div class="hero-meta">
+          <span class="badge ${getStatusClass(uav.status)}">${uav.status}</span>
+          <span class="badge badge-cat">${uav.category}</span>
+          <span class="badge badge-mfr">🏭 ${uav.manufacturer}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-body">
+
+      <!-- QUICK INFO -->
+      <div class="section">
+        <div class="section-title">📋 Thông tin tổng quan</div>
+        <div class="info-grid">
+          <div class="info-card"><div class="ic-label">Ký hiệu</div><div class="ic-value accent">${uav.designation}</div></div>
+          <div class="info-card"><div class="ic-label">Chuyến bay đầu tiên</div><div class="ic-value">${uav.firstFlight||'—'}</div></div>
+          <div class="info-card"><div class="ic-label">Đưa vào sử dụng</div><div class="ic-value green">${uav.introduced||'—'}</div></div>
+          <div class="info-card"><div class="ic-label">Vai trò</div><div class="ic-value" style="font-size:12px">${uav.role}</div></div>
+          <div class="info-card"><div class="ic-label">Phân loại</div><div class="ic-value">${uav.category}</div></div>
+          <div class="info-card"><div class="ic-label">Nhà sản xuất</div><div class="ic-value" style="font-size:12px">${uav.manufacturer}</div></div>
+          <div class="info-card"><div class="ic-label">Trạng thái</div><div class="ic-value" style="font-size:12px">${uav.status}</div></div>
+          <div class="info-card"><div class="ic-label">Số biến thể</div><div class="ic-value gold">${(uav.variants||[]).length} biến thể</div></div>
+        </div>
+      </div>
+
+      <!-- OPERATORS -->
+      ${opHtml ? `<div class="section"><div class="section-title">🏳️ Đơn vị vận hành</div><div class="op-list">${opHtml}</div></div>` : ''}
+
+      <!-- SPECS -->
+      <div class="section">
+        <div class="section-title">⚙️ Thông số kỹ thuật</div>
+        ${specsHtml}
+      </div>
+
+      <!-- ARMAMENT -->
+      <div class="section">
+        <div class="section-title">🎯 Vũ khí trang bị</div>
+        <div class="arm-list">${armHtml}</div>
+      </div>
+
+      <!-- SENSORS -->
+      ${sensHtml ? `<div class="section"><div class="section-title">📡 Hệ thống cảm biến</div><div class="sensor-list">${sensHtml}</div></div>` : ''}
+
+      <!-- VARIANTS -->
+      ${variantsHtml ? `<div class="section"><div class="section-title">🔧 Các biến thể</div><div class="variants-grid">${variantsHtml}</div></div>` : ''}
+
+      <!-- DESCRIPTION -->
+      <div class="section">
+        <div class="section-title">📖 Lịch sử & Mô tả chi tiết</div>
+        <div class="desc-box">${uav.description||'Thông tin đang được cập nhật.'}</div>
+        ${uav.notes ? `<div class="notes-box">💡 <strong>Ghi chú:</strong> ${uav.notes}</div>` : ''}
+      </div>
+
+      <!-- SOURCE -->
+      <div class="section">
+        <div class="section-title">🔗 Nguồn tham khảo</div>
+        <a href="${uav.sourceUrl}" target="_blank" class="source-link">🌐 Xem chi tiết tại designation-systems.net →</a>
+      </div>
+
+    </div>`;
+}
+
+// ============================================================
+// CONTROLS
+// ============================================================
+function switchImg(idx) {
+  activeImgIdx = idx;
+  renderDetail();
+  document.getElementById('detail').scrollTop = 0;
+}
+function switchSpecTab(idx) {
+  currentSpecTab = idx;
+  renderDetail();
+}
+function setFilter(type, val, btn) {
+  filters[type] = val;
+  const group = type === 'status' ? document.getElementById('statusFilters') : document.getElementById('catFilters');
+  group.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+function applyFilters() { renderList(); }
+
+// ============================================================
+// INIT
+// ============================================================
+renderList();
+</script>
+</body>
+</html>

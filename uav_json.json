@@ -1,0 +1,1506 @@
+{
+  "meta": {
+    "title": "U.S. Military UAV Database",
+    "source": "https://www.designation-systems.net/dusrm/app2/index.html",
+    "author": "Andreas Parsch",
+    "lastUpdated": "2025-12-22",
+    "totalEntries": 41
+  },
+  "uavs": [
+    {
+      "id": "q-1",
+      "designation": "RQ/MQ-1",
+      "name": "Predator / Gray Eagle",
+      "manufacturer": "General Atomics Aeronautical Systems (GA-ASI)",
+      "country": "USA",
+      "status": "Retired (USAF 2018) / Active (Army MQ-1C)",
+      "role": "Tactical Multimission / Armed Reconnaissance",
+      "category": "MALE",
+      "firstFlight": "July 1994",
+      "introduced": "1995",
+      "retired": "2018 (USAF)",
+      "operators": ["USAF", "U.S. Army"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-1.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-1k.jpg", "caption": "RQ-1K", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-1l.jpg", "caption": "RQ-1L", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-1l.jpg", "caption": "MQ-1L (armed)", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/warrior.jpg", "caption": "YMQ-1C Sky Warrior", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-1c.jpg", "caption": "MQ-1C Gray Eagle", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-1c-er.jpg", "caption": "MQ-1C Extended Range", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-1c-25m.jpg", "caption": "MQ-1C-25M", "credit": "General Atomics" }
+      ],
+      "specs": {
+        "RQ-1L": {
+          "length_m": 8.13, "length_ft": "26 ft 8 in",
+          "wingspan_m": 14.83, "wingspan_ft": "48 ft 8 in",
+          "height_m": 2.21, "height_ft": "7 ft 3 in",
+          "maxWeight_kg": 1020, "maxWeight_lb": 2250,
+          "emptyWeight_kg": 430, "emptyWeight_lb": 950,
+          "maxSpeed_kmh": 217, "maxSpeed_kts": 117,
+          "cruiseSpeed_kmh": 120, "cruiseSpeed_kts": 65,
+          "ceiling_m": 7920, "ceiling_ft": 26000,
+          "range_km": 740, "range_nm": 400,
+          "endurance_h": 20,
+          "propulsion": "Rotax 914 UL piston, 78.3 kW (105 hp)"
+        },
+        "MQ-1C": {
+          "length_m": 8.5, "length_ft": "28 ft",
+          "wingspan_m": 17.1, "wingspan_ft": "56 ft",
+          "maxWeight_kg": 1630, "maxWeight_lb": 3600,
+          "maxSpeed_kmh": 309, "maxSpeed_kts": 167,
+          "ceiling_m": 8840, "ceiling_ft": 29000,
+          "endurance_h": 25,
+          "propulsion": "Thielert Centurion 1.7 HFE, 111 kW (165 hp)"
+        },
+        "MQ-1C-25M": {
+          "wingspan_m": 17.7, "wingspan_ft": "58 ft",
+          "maxWeight_kg": 2000, "maxWeight_lb": 4400,
+          "ceiling_m": 7620, "ceiling_ft": 25000,
+          "endurance_h": 40,
+          "propulsion": "HFE, 135 kW (200 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-1A", "description": "Whole UAV system (ACTD configuration)" },
+        { "designation": "RQ-1K", "description": "ACTD air vehicle, Rotax 912 UL engine" },
+        { "designation": "RQ-1B", "description": "Block 1 system" },
+        { "designation": "RQ-1L", "description": "Block 1 air vehicle, Rotax 914 UL, de-icing" },
+        { "designation": "MQ-1L", "description": "Armed variant, redesignated Feb 2002" },
+        { "designation": "MQ-1B", "description": "Armed system designation" },
+        { "designation": "YMQ-1C", "description": "Sky Warrior prototype, 2006" },
+        { "designation": "MQ-1C", "description": "Gray Eagle (U.S. Army), 2010" },
+        { "designation": "MQ-1C GE-ER", "description": "Gray Eagle Extended Range, from 2017" },
+        { "designation": "MQ-1C-25M", "description": "Gray Eagle 25M, first flight Dec 2023" }
+      ],
+      "armament": ["AGM-114 Hellfire (up to 4)", "FIM-92 Stinger (evaluated)", "Other precision munitions"],
+      "sensors": ["AN/ZPQ-1 TESAR SAR radar", "Raytheon AN/AAS-52(V) MTS EO/IR turret", "SAR/GMTI (MQ-1C)"],
+      "description": "The Predator was the U.S. Air Force's first operational tactical multimission UAV. GA-ASI was awarded an ACTD contract by DARPA in January 1994 for the Tier II MAE (Medium Altitude Endurance) UAV requirement. Based on the earlier Gnat-750, it first flew in July 1994 and was first used operationally in July 1995 in Albania. It was extensively used in Afghanistan and Iraq. The final USAF Predator was delivered in 2011 (250+ aircraft), and the last MQ-1s were retired in March 2018. The MQ-1C Gray Eagle is the U.S. Army's long-endurance armed variant, with automatic take-off and landing (ATLS). By 2019, the Army had procured 204 MQ-1Cs. The GE 25M variant adds a new radar, enhanced ECM resilience, and dual-rail missile launchers for up to 8 Hellfires.",
+      "notes": "The Mojave / Gray Eagle STOL variant (turboprop, 7 hardpoints) was unveiled in 2021 for austere-field/amphibious operations but has not received firm U.S. military orders."
+    },
+    {
+      "id": "q-2",
+      "designation": "RQ-2",
+      "name": "Pioneer",
+      "manufacturer": "IAI / Pioneer UAV Inc. (IAI + AAI joint venture)",
+      "country": "USA/Israel",
+      "status": "Retired (2007)",
+      "role": "Tactical Reconnaissance / Naval Gunfire Support",
+      "category": "TUAV",
+      "firstFlight": "1985",
+      "introduced": "1986",
+      "retired": "2007",
+      "operators": ["U.S. Navy", "U.S. Marine Corps", "U.S. Army (until 1995)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-2.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-2a-1.jpg", "caption": "RQ-2A", "credit": "U.S. Navy" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-2a.jpg", "caption": "RQ-2A in flight", "credit": "U.S. Navy" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-2a-2.jpg", "caption": "RQ-2A recovery", "credit": "U.S. Navy" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/qrq-2b.jpg", "caption": "QRQ-2B Flycatcher target drone", "credit": "U.S. Navy / Vance Vasquez" }
+      ],
+      "specs": {
+        "RQ-2A": {
+          "length_m": 4.27, "length_ft": "14 ft 0 in",
+          "wingspan_m": 5.15, "wingspan_ft": "16 ft 10.75 in",
+          "height_m": 1.00, "height_ft": "3 ft 3.5 in",
+          "maxWeight_kg": 205, "maxWeight_lb": 450,
+          "emptyWeight_kg": 178, "emptyWeight_lb": 392,
+          "maxSpeed_kmh": 204, "maxSpeed_mph": 127,
+          "cruiseSpeed_kmh": 120, "cruiseSpeed_mph": 74,
+          "ceiling_m": 4570, "ceiling_ft": 15000,
+          "range_km": 185, "range_nm": 100,
+          "endurance_h": 5,
+          "propulsion": "Sachs & Fichtel SF2-350 piston, 19.4 kW (26 hp); RQ-2C: UEL AR-741 rotary, 28.3 kW (38 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-2A", "description": "Initial production variant, designated 1997" },
+        { "designation": "RQ-2B", "description": "Improved with UCARS and MIAG, ordered 1997; 33 RQ-2As upgraded" },
+        { "designation": "RQ-2C", "description": "Planned upgrade with AR-741 engine and IR laser designator (few, if any, converted)" },
+        { "designation": "QRQ-2B", "description": "Flycatcher — target drone conversion of surplus airframes" }
+      ],
+      "armament": ["None (ISR only)"],
+      "sensors": ["Wescam DS-12 EO/IR turret", "C-band datalink"],
+      "description": "The Pioneer was the first tactical battlefield UAV in service with the U.S. armed forces. IAI began development in 1984; the Pioneer won a U.S. Navy fly-off in January 1986. It saw major combat in Operation Desert Storm (1991) — during one famous incident, Iraqi soldiers surrendered to a Pioneer drone. The Navy deployed Pioneers from Iowa-class battleships and Austin-class amphibious ships. Retired in 2007, replaced by the RQ-8 Fire Scout (delayed). Surviving aircraft were converted to QRQ-2B Flycatcher target drones.",
+      "notes": "The Pioneer significantly contributed to growing military recognition of UAVs as combat assets in the 1990s."
+    },
+    {
+      "id": "q-3",
+      "designation": "RQ-3",
+      "name": "DarkStar",
+      "manufacturer": "Lockheed Martin / Boeing",
+      "country": "USA",
+      "status": "Cancelled (1999)",
+      "role": "High-Altitude Stealth Reconnaissance (Tier III Minus)",
+      "category": "HALE",
+      "firstFlight": "March 1996",
+      "introduced": "N/A",
+      "retired": "1999 (cancelled)",
+      "operators": ["DARPA", "USAF (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-3.html",
+      "images": [],
+      "specs": {
+        "RQ-3A": {
+          "length_m": 4.57, "length_ft": "15 ft 0 in",
+          "wingspan_m": 21.0, "wingspan_ft": "69 ft 0 in",
+          "height_m": 1.07, "height_ft": "3 ft 6 in",
+          "maxWeight_kg": 3901, "maxWeight_lb": 8600,
+          "ceiling_m": 13700, "ceiling_ft": 45000,
+          "range_km": 926, "range_nm": 500,
+          "endurance_h": 8,
+          "propulsion": "Williams F129 turbofan, 3.1 kN (700 lbf)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-3A", "description": "Only variant; ACTD demonstrator" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR", "SAR (planned)"],
+      "description": "DarkStar was a stealthy, highly autonomous HALE UAV developed under DARPA's Tier III Minus ACTD program to operate in contested airspace. It crashed on its second flight in April 1996 and was redesigned. Performance was consistently disappointing and costs overran. The program was cancelled in January 1999 before entering operational service.",
+      "notes": "Designed to be fully autonomous and able to penetrate heavily defended airspace with its flying-wing low-observable design."
+    },
+    {
+      "id": "q-4",
+      "designation": "RQ-4 / MQ-4",
+      "name": "Global Hawk / Triton",
+      "manufacturer": "Northrop Grumman (Teledyne Ryan)",
+      "country": "USA",
+      "status": "Active (phasing out by 2027 USAF) / Active (USN MQ-4C)",
+      "role": "High-Altitude Long-Endurance ISR / Maritime Patrol",
+      "category": "HALE",
+      "firstFlight": "February 1998",
+      "introduced": "2001",
+      "retired": "N/A",
+      "operators": ["USAF", "U.S. Navy (MQ-4C)", "NASA", "Japan", "South Korea", "NATO", "Australia"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-4.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-4a.jpg", "caption": "RQ-4A", "credit": "USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-4a-1.jpg", "caption": "RQ-4A diagram", "credit": "Northrop Grumman" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-4b.jpg", "caption": "RQ-4B", "credit": "Northrop Grumman" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/eq-4b.jpg", "caption": "EQ-4B (BACN)", "credit": "USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-4d.jpg", "caption": "RQ-4D Phoenix (NATO)", "credit": "Northrop Grumman" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-4c.jpg", "caption": "MQ-4C Triton", "credit": "U.S. Navy" }
+      ],
+      "specs": {
+        "RQ-4A": {
+          "length_m": 13.53, "length_ft": "44 ft 4.75 in",
+          "wingspan_m": 35.42, "wingspan_ft": "116 ft 2.5 in",
+          "height_m": 4.64, "height_ft": "15 ft 2.5 in",
+          "maxWeight_kg": 12130, "maxWeight_lb": 26750,
+          "emptyWeight_kg": 6710, "emptyWeight_lb": 14800,
+          "maxSpeed_kmh": 648, "maxSpeed_mph": 403,
+          "ceiling_m": 19800, "ceiling_ft": 65000,
+          "range_km": 21720, "range_nm": 11730,
+          "endurance_h": 36,
+          "propulsion": "Rolls-Royce/Allison F137-RR-100 turbofan, 33.8 kN (7600 lbf)"
+        },
+        "RQ-4B": {
+          "length_m": 14.50, "length_ft": "47 ft 7 in",
+          "wingspan_m": 39.90, "wingspan_ft": "130 ft 11 in",
+          "maxWeight_kg": 14630, "maxWeight_lb": 32250,
+          "maxSpeed_kmh": 574, "maxSpeed_mph": 357,
+          "ceiling_m": 18300, "ceiling_ft": 60000,
+          "endurance_h": 34
+        }
+      },
+      "variants": [
+        { "designation": "RQ-4A", "description": "Block 10 — initial production ACTD vehicles" },
+        { "designation": "RQ-4B", "description": "Block 20/30/40 — enlarged, 50% more payload, SIGINT/ELINT" },
+        { "designation": "EQ-4B", "description": "5 x Block 20 converted for BACN (Battlefield Airborne Communications Node); retired 2021" },
+        { "designation": "RQ-4D", "description": "Phoenix — NATO Alliance Ground Surveillance, Block 40 based; IOC Feb 2021" },
+        { "designation": "RQ-4E", "description": "Euro Hawk — German Bundeswehr (SIGINT, EADS payload); cancelled after 1 aircraft" },
+        { "designation": "MQ-4C", "description": "Triton — U.S. Navy BAMS maritime surveillance; IOC Sept 2023" },
+        { "designation": "MQ-4D", "description": "Triton for German Bundeswehr PEGASUS program — cancelled 2020" }
+      ],
+      "armament": ["None (ISR only)"],
+      "sensors": ["SAR/MTI", "EO/IR", "SIGINT/ELINT (Block 30/40)", "AN/ZPY-2 AESA MP-RTIP radar (Block 40)", "AN/ZPY-3 MFAS AESA radar (MQ-4C)", "SATCOM 1.2m antenna"],
+      "description": "Global Hawk is the USAF's first operational HAE UAV. DARPA issued the Tier II+ requirement in 1994; Teledyne Ryan won the ACTD contract in March 1995. First flew February 1998. It can survey 100,000 km² per day and fly intercontinental distances. Used operationally over Afghanistan, Iraq, North Korea. ~45 RQ-4A/B built; USAF plans retirement by 2027. MQ-4C Triton achieved IOC with USN in September 2023; 27 planned.",
+      "notes": "The RQ-4B Block 40 features the AN/ZPY-2 MP-RTIP AESA radar for wide-area ground moving target surveillance. The USAF retirement plan is interpreted as evidence that classified successors like the alleged 'RQ-180' are already operational."
+    },
+    {
+      "id": "q-5",
+      "designation": "RQ/MQ-5",
+      "name": "Hunter",
+      "manufacturer": "Northrop Grumman / TRW / IAI",
+      "country": "USA/Israel",
+      "status": "Retired",
+      "role": "Tactical Reconnaissance / Armed Scout",
+      "category": "TUAV",
+      "firstFlight": "1995",
+      "introduced": "1996",
+      "retired": "~2012",
+      "operators": ["U.S. Army"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-5.html",
+      "images": [],
+      "specs": {
+        "MQ-5B": {
+          "length_m": 6.9, "length_ft": "22 ft 8 in",
+          "wingspan_m": 8.9, "wingspan_ft": "29 ft 2 in",
+          "height_m": 1.7, "height_ft": "5 ft 7 in",
+          "maxWeight_kg": 885, "maxWeight_lb": 1950,
+          "emptyWeight_kg": 432, "emptyWeight_lb": 952,
+          "maxSpeed_kmh": 204, "maxSpeed_kts": 110,
+          "ceiling_m": 4570, "ceiling_ft": 15000,
+          "range_km": 267, "range_nm": 144,
+          "endurance_h": 12,
+          "propulsion": "2x Moto Guzzi piston, 2x 48 kW (64 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-5A", "description": "Initial reconnaissance variant" },
+        { "designation": "MQ-5A", "description": "Armed (Viper Strike)" },
+        { "designation": "MQ-5B", "description": "Extended endurance armed variant" }
+      ],
+      "armament": ["Viper Strike guided munition (MQ-5B)"],
+      "sensors": ["EO/IR turret", "SAR"],
+      "description": "A joint U.S.-Israeli UAV serving the U.S. Army. Originally designated BQM-155, it was re-designated RQ-5A under the new Q-for-UAV system. The MQ-5B variant was armed with the Viper Strike precision-guided munition. The Hunter was replaced by the MQ-1C Gray Eagle.",
+      "notes": "Was also developed as the Hunter II (enlarged derivative) as a competitor to the MQ-1C ERMP program, which it lost to GA-ASI's Sky Warrior."
+    },
+    {
+      "id": "q-6",
+      "designation": "RQ-6",
+      "name": "Outrider",
+      "manufacturer": "Alliant Techsystems (ATK)",
+      "country": "USA",
+      "status": "Cancelled (1999)",
+      "role": "Tactical Reconnaissance",
+      "category": "TUAV",
+      "firstFlight": "1997",
+      "introduced": "N/A",
+      "retired": "1999 (cancelled)",
+      "operators": ["U.S. Army (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-6.html",
+      "images": [],
+      "specs": {
+        "RQ-6A": {
+          "maxWeight_kg": 90, "maxWeight_lb": 198,
+          "maxSpeed_kmh": 148, "maxSpeed_kts": 80,
+          "ceiling_m": 4575, "ceiling_ft": 15000,
+          "range_km": 100,
+          "endurance_h": 3
+        }
+      },
+      "variants": [
+        { "designation": "RQ-6A", "description": "Only variant; cancelled before full production" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR"],
+      "description": "The Outrider was developed as a tactical TUAV for the U.S. Army and Navy. After persistent performance deficiencies and cost overruns in 1997/98, the Army conducted a competitive fly-off between the Outrider and Shadow 200. The Shadow 200 won, and the RQ-6 program was cancelled in 1999. The Navy also withdrew from the program, instead choosing the RQ-8 Fire Scout VTUAV.",
+      "notes": "Cancellation triggered the selection of the RQ-7 Shadow 200 as the primary U.S. Army TUAV."
+    },
+    {
+      "id": "q-7",
+      "designation": "RQ-7",
+      "name": "Shadow 200",
+      "manufacturer": "AAI Corporation (now L3Harris)",
+      "country": "USA",
+      "status": "Active",
+      "role": "Tactical Reconnaissance, Surveillance, Target Acquisition",
+      "category": "TUAV",
+      "firstFlight": "1991 (prototype)",
+      "introduced": "2002",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "U.S. Marine Corps (replaced by RQ-21)", "Multiple allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-7.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-7a.jpg", "caption": "RQ-7A", "credit": "AAI" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-7a-1.jpg", "caption": "RQ-7A in operation", "credit": "U.S. Army" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-7b.jpg", "caption": "RQ-7B", "credit": "AAI" }
+      ],
+      "specs": {
+        "RQ-7A": {
+          "length_m": 3.40, "length_ft": "11 ft 2 in",
+          "wingspan_m": 3.89, "wingspan_ft": "12 ft 9 in",
+          "height_m": 0.91, "height_ft": "3 ft 0 in",
+          "maxWeight_kg": 149, "maxWeight_lb": 328,
+          "emptyWeight_kg": 75, "emptyWeight_lb": 165,
+          "maxSpeed_kmh": 204, "maxSpeed_kts": 110,
+          "loiterSpeed_kmh": 130, "loiterSpeed_kts": 70,
+          "ceiling_m": 4270, "ceiling_ft": 14000,
+          "range_km": 125, "range_nm": 67,
+          "endurance_h": 5,
+          "propulsion": "UEL AR-741 rotary, 28.3 kW (38 hp)"
+        },
+        "RQ-7B": {
+          "wingspan_m": 4.27, "wingspan_ft": "14 ft",
+          "maxWeight_kg": 170, "maxWeight_lb": 375,
+          "maxSpeed_kmh": 194, "maxSpeed_kts": 105,
+          "loiterSpeed_kmh": 111, "loiterSpeed_kts": 60,
+          "ceiling_m": 4570, "ceiling_ft": 15000,
+          "endurance_h": 7
+        }
+      },
+      "variants": [
+        { "designation": "RQ-7A", "description": "Block 1 — initial production, IAI Tamam POP EO/IR payload" },
+        { "designation": "RQ-7B", "description": "Block 2 — larger wings, 7h endurance, upgraded avionics, IMU, TCDL" },
+        { "designation": "RQ-7B v2", "description": "Further improved endurance and payload options" }
+      ],
+      "armament": ["None (ISR only)"],
+      "sensors": ["IAI Tamam POP EO/IR turret", "Wescam EO/IR (Block 2)", "GPS navigation", "TCDL datalink"],
+      "description": "The Shadow 200 short-range TUAV was developed by AAI in the 1990s. It won the 1999 U.S. Army TUAV competition over the RQ-6 Outrider, receiving its first LRIP contract. The system consists of 4 UAVs + 2 GCSs with both LOS and non-LOS datalinks. Approved for full-rate production in October 2002. A system consists of four air vehicles. Extensively used in Iraq and Afghanistan for reconnaissance, surveillance, target acquisition, and BDA.",
+      "notes": "Army ordered 33 systems (4 aircraft each) by March 2004 with plans for up to 88 systems. The RQ-7B introduced the Tactical Common Data Link (TCDL)."
+    },
+    {
+      "id": "q-8",
+      "designation": "RQ/MQ-8",
+      "name": "Fire Scout",
+      "manufacturer": "Northrop Grumman",
+      "country": "USA",
+      "status": "Retiring (MQ-8C retiring by 2026)",
+      "role": "Naval VTOL UAV — Reconnaissance, Targeting, Armed Scout",
+      "category": "VTOL UAV",
+      "firstFlight": "January 2000 (unmanned), June 2000 (first autonomous)",
+      "introduced": "2006",
+      "retired": "MQ-8B retired Oct 2022; MQ-8C retiring ~2026",
+      "operators": ["U.S. Navy", "U.S. Army (terminated 2010)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-8.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-8a.jpg", "caption": "RQ-8A (Schweizer 330SP based)", "credit": "Northrop Grumman" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-8a-1.jpg", "caption": "RQ-8A ship trials", "credit": "Northrop Grumman" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-8b.jpg", "caption": "MQ-8B", "credit": "Northrop Grumman" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-8c.jpg", "caption": "MQ-8C (Bell 407 based)", "credit": "U.S. Navy" }
+      ],
+      "specs": {
+        "RQ-8A": {
+          "length_m": 6.98, "length_ft": "22 ft 11 in",
+          "rotorDiameter_m": 8.38, "rotorDiameter_ft": "27 ft 6 in",
+          "height_m": 2.87, "height_ft": "9 ft 5 in",
+          "maxWeight_kg": 1200, "maxWeight_lb": 2650,
+          "maxSpeed_kmh": 231, "maxSpeed_mph": 144,
+          "ceiling_m": 6100, "ceiling_ft": 20000,
+          "endurance_h": 5,
+          "propulsion": "Rolls-Royce 250-C20W turboshaft, 310 kW (420 shp)"
+        },
+        "MQ-8B": {
+          "length_m": 7.30, "length_ft": "23.95 ft",
+          "maxWeight_kg": 1430, "maxWeight_lb": 3150,
+          "endurance_h": 8
+        },
+        "MQ-8C": {
+          "length_m": 10.6, "length_ft": "34.7 ft",
+          "rotorDiameter_m": 11.2, "rotorDiameter_ft": "36.6 ft",
+          "height_m": 3.3, "height_ft": "10.9 ft",
+          "maxWeight_kg": 2700, "maxWeight_lb": 6000,
+          "maxSpeed_kmh": 260, "maxSpeed_mph": 160,
+          "endurance_h": 15,
+          "propulsion": "Rolls-Royce 250-C47B turboshaft, 606 kW (813 shp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-8A", "description": "Based on Schweizer 330SP; first LRIP May 2001" },
+        { "designation": "MQ-8B", "description": "Based on Schweizer 333, 4-blade rotor; FCS UAS; only 30 bought; retired Oct 2022" },
+        { "designation": "MQ-8C", "description": "Based on Bell 407; larger, 15h endurance, IOC June 2019; 38 built, retiring by 2026" }
+      ],
+      "armament": ["AGR-20 APKWS II laser-guided 2.75-in rockets (MQ-8B/C)"],
+      "sensors": ["EO/IR/LDRF turret", "Telephonics AN/ZPY-4(V)1 radar (MQ-8B late)", "Ku-Band TCDL"],
+      "description": "Fire Scout is an autonomous shipboard VTOL UAV selected by the U.S. Navy in 2000 to replace the RQ-2 Pioneer. The RQ-8A was based on the Schweizer 330SP and first flew in January 2000. The MQ-8B was selected for the Army's FCS UAS and Navy's LCS but the Army cancelled in 2010. Only 30 MQ-8Bs were acquired by the Navy, retiring October 2022. The larger MQ-8C (Bell 407-based) achieved IOC June 2019; 38 were built but the Navy plans retirement by 2026.",
+      "notes": "The MQ-8B demonstrated armed rocket operations from LCS. MQ-8C provides 3x the endurance of MQ-8B."
+    },
+    {
+      "id": "q-9",
+      "designation": "MQ-9",
+      "name": "Reaper (Predator B)",
+      "manufacturer": "General Atomics Aeronautical Systems (GA-ASI)",
+      "country": "USA",
+      "status": "Active (USAF plans retirement by 2035)",
+      "role": "Armed Multimission / Hunter-Killer ISR",
+      "category": "MALE",
+      "firstFlight": "February 2001",
+      "introduced": "2007",
+      "retired": "N/A (planned 2035 USAF)",
+      "operators": ["USAF", "U.S. Navy (eval)", "UK (MQ-9B)", "Italy", "France", "Netherlands", "Spain", "Belgium", "Australia"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-9.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/ymq-9a.jpg", "caption": "YMQ-9A Predator B prototype", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/ymq-9a-1.jpg", "caption": "YMQ-9A prototype close-up", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-9a.jpg", "caption": "MQ-9A Reaper", "credit": "Senior Airman Larry E. Reid Jr., USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-9a-1.jpg", "caption": "MQ-9A in flight", "credit": "Lt. Col. Leslie Pratt, USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-9b-skyguardian.jpg", "caption": "MQ-9B SkyGuardian", "credit": "General Atomics" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-9b.jpg", "caption": "MQ-9B Protector RG.1 (RAF)", "credit": "Royal Air Force" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-9b-seaguardian.jpg", "caption": "MQ-9B SeaGuardian", "credit": "General Atomics" }
+      ],
+      "specs": {
+        "MQ-9A": {
+          "length_m": 11, "length_ft": "36 ft",
+          "wingspan_m": 20, "wingspan_ft": "66 ft",
+          "height_m": 3.56, "height_ft": "11 ft 8 in",
+          "maxWeight_kg": 4760, "maxWeight_lb": 10500,
+          "emptyWeight_kg": 1380, "emptyWeight_lb": 3050,
+          "maxSpeed_kmh": 445, "maxSpeed_kts": 240,
+          "ceiling_m": 15200, "ceiling_ft": 50000,
+          "endurance_h": 27,
+          "propulsion": "Honeywell TPE-331-10T turboprop, 671 kW (900 shp)"
+        },
+        "MQ-9B": {
+          "length_m": 11.6, "length_ft": "38 ft",
+          "wingspan_m": 24, "wingspan_ft": "79 ft",
+          "maxWeight_kg": 5670, "maxWeight_lb": 12500,
+          "maxSpeed_kmh": 390, "maxSpeed_kts": 210,
+          "ceiling_m": 12200, "ceiling_ft": 40000,
+          "endurance_h": 40
+        }
+      },
+      "variants": [
+        { "designation": "YMQ-9A", "description": "Two prototypes purchased 2003 (turboprop-powered)" },
+        { "designation": "MQ-9A", "description": "Reaper — primary USAF variant; 366 ordered, 300+ delivered" },
+        { "designation": "MQ-9A ER", "description": "Extended Range — external wing tanks, reinforced gear; 38 upgraded, up to 33h ISR endurance" },
+        { "designation": "MQ-9B SkyGuardian", "description": "Predator B ER — longer wing, civil airspace compliant; first user: RAF Protector RG.1" },
+        { "designation": "MQ-9B SeaGuardian", "description": "Maritime variant — sonobuoy, ASW, mine-laying kits; 2200 km (1200 nm) radius" },
+        { "designation": "MQ-9B STOL", "description": "Modified wing/tail kit for STOL from expeditionary bases / amphibious ships" }
+      ],
+      "armament": [
+        "AGM-114 Hellfire (up to 8)",
+        "GBU-12/B Paveway II (500 lb LGB)",
+        "GBU-38/B JDAM (500 lb GPS)",
+        "GBU-49/B Enhanced Paveway II",
+        "GBU-54/B Laser JDAM",
+        "AIM-9X Sidewinder (Block 2, vs cruise-missile threats, confirmed Sept 2020)"
+      ],
+      "sensors": ["Raytheon AN/AAS-52(V) MTS EO/IR/LD turret", "General Atomics AN/APY-8 Lynx SAR"],
+      "description": "The Reaper (Predator B) is a larger, more capable successor to the MQ-1 Predator, developed as a private venture by GA-ASI from 1998, initially funded by NASA. Significantly more powerful turboprop engine gives it 50,000 ft ceiling and 27h endurance. Designated MQ-9A and named Reaper in 2006. Combat debut 2007 over Afghanistan. Used extensively in Afghanistan, Iraq, Yemen, Syria. USAF lost 12+ Reapers over Yemen in 2023/24 to Houthi SAMs. Over 300 delivered to USAF; retirement planned 2035. MQ-9B SkyGuardian first ordered by RAF, first RAF deliveries late 2023.",
+      "notes": "The MQ-9B STOL variant with foldable wings is designed for LHA-type carrier deck operations. The SeaGuardian can conduct ASW missions via sonobuoy dispensing."
+    },
+    {
+      "id": "q-10",
+      "designation": "CQ-10",
+      "name": "SnowGoose",
+      "manufacturer": "MMIST",
+      "country": "Canada (for US SOCOM)",
+      "status": "Limited operational use",
+      "role": "Autonomous Cargo Delivery / ISR Parafoil UAV",
+      "category": "Parafoil UAV",
+      "firstFlight": "2003",
+      "introduced": "~2005",
+      "retired": "N/A",
+      "operators": ["U.S. SOCOM"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-10.html",
+      "images": [],
+      "specs": {
+        "CQ-10A": {
+          "maxWeight_kg": 340, "maxWeight_lb": 750,
+          "emptyWeight_kg": 136, "emptyWeight_lb": 300,
+          "maxSpeed_kmh": 50,
+          "ceiling_m": 5500, "ceiling_ft": 18000,
+          "range_km": 56,
+          "endurance_h": 10,
+          "propulsion": "BMW F650 piston, 37 kW (50 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "CQ-10A", "description": "Initial cargo delivery parafoil UAV" },
+        { "designation": "CQ-10B", "description": "Improved payload / performance" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR (ISR missions)"],
+      "description": "The SnowGoose is a powered parafoil UAV procured for U.S. Special Operations Command (SOCOM) for clandestine cargo delivery and ISR missions. It can be air-launched from an aircraft and autonomously delivers supplies or equipment to designated coordinates. The 'C' prefix in the designation indicates its cargo/transport mission.",
+      "notes": "The parafoil design allows quiet, low-speed flight suitable for covert logistics support in denied areas."
+    },
+    {
+      "id": "q-11",
+      "designation": "RQ-11",
+      "name": "Raven",
+      "manufacturer": "AeroVironment",
+      "country": "USA",
+      "status": "Active",
+      "role": "Man-portable Small UAV — Local Reconnaissance & Force Protection",
+      "category": "SUAV / Mini UAV",
+      "firstFlight": "October 2001 (proof-of-concept)",
+      "introduced": "2003",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "USAF SOCOM", "50+ allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-11.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-11.jpg", "caption": "Flashlight proof-of-concept vehicle", "credit": "UAV Forum" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-11-1.jpg", "caption": "Block I Raven", "credit": "AeroVironment/U.S. Army" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-11-2.jpg", "caption": "Block II Raven (RQ-11A)", "credit": "AeroVironment/U.S. Army" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-11a.jpg", "caption": "RQ-11A in service", "credit": "U.S. Army" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-11b.jpg", "caption": "RQ-11B Raven B", "credit": "AeroVironment" }
+      ],
+      "specs": {
+        "RQ-11A": {
+          "length_m": 1.1, "length_ft": "3 ft 7 in",
+          "wingspan_m": 1.3, "wingspan_ft": "4 ft 3 in",
+          "weight_kg": 1.9, "weight_lb": 4.2,
+          "maxSpeed_kmh": 95, "maxSpeed_mph": 60,
+          "ceiling_m": 4500, "ceiling_ft": 15000,
+          "range_km": 10, "range_miles": 6.2,
+          "endurance_min": 80,
+          "propulsion": "Aveox 27/26/7-AV electric motor"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-11A", "description": "Block II — official designation allocated late 2004; hand-launched" },
+        { "designation": "RQ-11B", "description": "Raven B — lighter GCS, laser illuminator, improved sensors; won Army SUAV competition 2005" },
+        { "designation": "RQ-11B BDDS", "description": "Battlefield Dismounted Digital System integration" }
+      ],
+      "armament": ["None"],
+      "sensors": ["CCD color video camera", "Infrared camera", "GPS navigation", "Laser illuminator (RQ-11B)"],
+      "description": "The Raven is a small hand-launched UAV developed from AeroVironment's FQM-151 Pointer under the Army's Pathfinder ACTD program. The proof-of-concept 'Flashlight' flew October 2001. Block I was delivered May 2003; Block II (RQ-11A) evaluated in Afghanistan and used in Operation Iraqi Freedom. Over 1,300 built by early 2005, 2,000+ more on contract. SOCOM purchased 179 systems (3 vehicles each). Over 19,000 have been produced for U.S. and allied militaries — one of the most widely used military UAVs in the world. A single soldier can operate it.",
+      "notes": "Operates at 30–300 m altitude. Can autonomously return to launch point with a single button press. Used for MOUT reconnaissance."
+    },
+    {
+      "id": "q-12",
+      "designation": "RQ-12",
+      "name": "Wasp AE",
+      "manufacturer": "AeroVironment",
+      "country": "USA",
+      "status": "Active",
+      "role": "Micro UAV — Squad-level ISR / Maritime",
+      "category": "Micro UAV",
+      "firstFlight": "2002",
+      "introduced": "~2008",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "USMC", "USSOCOM"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-12.html",
+      "images": [],
+      "specs": {
+        "RQ-12A": {
+          "length_m": 0.38, "length_in": "15 in",
+          "wingspan_m": 0.75, "wingspan_in": "29.5 in",
+          "weight_kg": 0.43, "weight_lb": 0.95,
+          "maxSpeed_kmh": 65, "maxSpeed_kts": 35,
+          "ceiling_m": 4572, "ceiling_ft": 15000,
+          "range_km": 5,
+          "endurance_min": 45,
+          "propulsion": "Electric motor"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-12A", "description": "Wasp AE (All Environment) — waterproof, can land on water" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO camera", "IR camera"],
+      "description": "The Wasp AE (All Environment) is an ultra-small man-portable UAV for squad-level reconnaissance. Waterproofed for maritime environments, it can be hand-launched and can land on water for recovery — the first small UAS approved by the FAA for commercial over-water operations. It streams live EO/IR video.",
+      "notes": "AE = All Environment, referring to its waterproof capability for maritime/littoral operations."
+    },
+    {
+      "id": "q-13",
+      "designation": "(Q-13)",
+      "name": "Unknown / Unallocated",
+      "manufacturer": "Unknown",
+      "country": "USA",
+      "status": "Unknown",
+      "role": "Unknown (designation reserved or classified)",
+      "category": "Unknown",
+      "firstFlight": "Unknown",
+      "introduced": "Unknown",
+      "retired": "N/A",
+      "operators": [],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-13.html",
+      "images": [],
+      "specs": {},
+      "variants": [],
+      "armament": [],
+      "sensors": [],
+      "description": "The Q-13 designation slot appears to be reserved or classified. No public information is available about this designation.",
+      "notes": "Listed in the official index as a designation that has been allocated but for which no public details exist."
+    },
+    {
+      "id": "q-14",
+      "designation": "RQ-14",
+      "name": "Dragon Eye / Swift",
+      "manufacturer": "AeroVironment / BAE Systems",
+      "country": "USA",
+      "status": "Limited/Retired",
+      "role": "Small Backpackable UAV — Marine Corps ISR",
+      "category": "SUAV",
+      "firstFlight": "2001",
+      "introduced": "2003",
+      "retired": "~2012",
+      "operators": ["U.S. Marine Corps"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-14.html",
+      "images": [],
+      "specs": {
+        "RQ-14A": {
+          "length_m": 0.91, "length_ft": "3 ft",
+          "wingspan_m": 1.14, "wingspan_ft": "3 ft 9 in",
+          "weight_kg": 2.7, "weight_lb": 6,
+          "maxSpeed_kmh": 72, "maxSpeed_kts": 39,
+          "ceiling_m": 3050, "ceiling_ft": 10000,
+          "range_km": 10,
+          "endurance_h": 1,
+          "propulsion": "2x electric motors"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-14A", "description": "Dragon Eye — twin-motor backpackable UAV for USMC" },
+        { "designation": "RQ-14B", "description": "Swift — follow-on BAE Systems development" }
+      ],
+      "armament": ["None"],
+      "sensors": ["CCD camera (front and side-looking)"],
+      "description": "The Dragon Eye was a small backpackable UAV developed for the U.S. Marine Corps for squad-level reconnaissance. It can be hand-launched and is quiet enough for clandestine operations. It was developed under the USMC's Small Unit Remote Scouting System (SURSS) program.",
+      "notes": "Dragon Eye paved the way for the larger RQ-20 Puma AE in Marine Corps service."
+    },
+    {
+      "id": "q-15",
+      "designation": "RQ-15",
+      "name": "Neptune",
+      "manufacturer": "DRS Technologies",
+      "country": "USA",
+      "status": "Limited/Retired",
+      "role": "Ship-based Maritime Reconnaissance UAV",
+      "category": "SUAV",
+      "firstFlight": "~2003",
+      "introduced": "~2005",
+      "retired": "N/A",
+      "operators": ["U.S. Navy (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-15.html",
+      "images": [],
+      "specs": {
+        "RQ-15A": {
+          "endurance_h": 4,
+          "range_km": 50,
+          "propulsion": "Electric motor"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-15A", "description": "Neptune — ship-launched electric UAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR camera"],
+      "description": "Neptune is a small ship-launched UAV developed by DRS Technologies for maritime reconnaissance. It is electrically powered, quiet, and suitable for operation from surface combatants.",
+      "notes": "Limited information available publicly."
+    },
+    {
+      "id": "q-16",
+      "designation": "RQ-16",
+      "name": "T-Hawk (Tarantula Hawk)",
+      "manufacturer": "Honeywell",
+      "country": "USA",
+      "status": "Limited",
+      "role": "Micro Air Vehicle — Urban ISR / Close Reconnaissance",
+      "category": "Micro UAV / MAV",
+      "firstFlight": "2003",
+      "introduced": "2007",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "U.S. Navy EOD"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-16.html",
+      "images": [],
+      "specs": {
+        "RQ-16A": {
+          "diameter_m": 0.33, "diameter_in": "13 in",
+          "height_m": 0.33,
+          "weight_kg": 8.4, "weight_lb": 18.5,
+          "maxSpeed_kmh": 130, "maxSpeed_kts": 70,
+          "ceiling_m": 3050, "ceiling_ft": 10000,
+          "range_km": 11,
+          "endurance_min": 45,
+          "propulsion": "Honeywell ducted fan, 26 kW (35 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-16A", "description": "T-Hawk — single ducted fan VTOL MAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR camera (gimbaled)"],
+      "description": "T-Hawk (Tarantula Hawk) is a VTOL micro air vehicle with a ducted fan design — no exposed rotor blades, enabling safe urban/indoor use. Developed under the U.S. Army's MAV program. Notably used at Fukushima Daiichi in April 2011 to inspect damaged nuclear reactor buildings, providing video imagery of the disaster zone.",
+      "notes": "T-Hawks were also used for IED detection and EOD in Iraq and Afghanistan. The ducted fan allows hover without blade exposure hazard."
+    },
+    {
+      "id": "q-17",
+      "designation": "MQ-17",
+      "name": "SpyHawk",
+      "manufacturer": "MTC Technologies",
+      "country": "USA",
+      "status": "Cancelled / Limited",
+      "role": "Long-Endurance ISR",
+      "category": "MALE",
+      "firstFlight": "~2004",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["U.S. Army (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-17.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "MQ-17A", "description": "SpyHawk — long-endurance ISR UAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR"],
+      "description": "The SpyHawk was a long-endurance UAV developed by MTC Technologies. Limited public information is available. The program did not proceed to full production.",
+      "notes": "MTC Technologies was acquired by BAE Systems in 2007."
+    },
+    {
+      "id": "q-18",
+      "designation": "MQ-18",
+      "name": "Hummingbird (A160T)",
+      "manufacturer": "Boeing (originally Frontier Systems)",
+      "country": "USA",
+      "status": "Development/Limited",
+      "role": "Long-Endurance Autonomous Helicopter UAV",
+      "category": "VTOL UAV",
+      "firstFlight": "2002",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["U.S. Army (eval)", "DARPA"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-18.html",
+      "images": [],
+      "specs": {
+        "MQ-18A": {
+          "length_m": 10.7, "length_ft": "35 ft",
+          "rotorDiameter_m": 11.0, "rotorDiameter_ft": "36 ft",
+          "maxWeight_kg": 2722, "maxWeight_lb": 6000,
+          "maxSpeed_kmh": 259, "maxSpeed_kts": 140,
+          "ceiling_m": 9145, "ceiling_ft": 30000,
+          "endurance_h": 20,
+          "propulsion": "Pratt & Whitney Canada PW207D turboshaft"
+        }
+      },
+      "variants": [
+        { "designation": "MQ-18A", "description": "A160T Hummingbird — optimum-speed rotor (OSR) technology" }
+      ],
+      "armament": ["None (ISR)", "Optional weapons tested"],
+      "sensors": ["EO/IR", "Foliage Penetration (FOPEN) radar (DARPA trials)"],
+      "description": "The A160T Hummingbird is an unmanned helicopter featuring an Optimum-Speed Rotor (OSR) that varies rotor RPM for peak efficiency at different speeds and altitudes. It achieved world-record rotorcraft endurance. DARPA used it to test foliage-penetrating radar. Boeing acquired Frontier Systems in 2004.",
+      "notes": "The OSR technology is the key innovation — conventional helicopters use constant rotor RPM, while the A160T varies it dynamically."
+    },
+    {
+      "id": "q-19",
+      "designation": "MQ-19 / RQ-10",
+      "name": "Aerosonde",
+      "manufacturer": "Textron (AAI / Aerosonde)",
+      "country": "USA/Australia",
+      "status": "Active",
+      "role": "Small Long-Endurance ISR / Maritime / Weather Reconnaissance",
+      "category": "SUAV / Small MALE",
+      "firstFlight": "1998 (Aerosonde Mk 1 Atlantic crossing)",
+      "introduced": "~2007",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "U.S. Marine Corps", "U.S. Navy", "Allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-19.html",
+      "images": [],
+      "specs": {
+        "MQ-19A": {
+          "weight_kg": 28.6, "weight_lb": 63,
+          "wingspan_m": 3.0, "wingspan_ft": "9 ft 10 in",
+          "maxSpeed_kmh": 160, "maxSpeed_kts": 86,
+          "ceiling_m": 5940, "ceiling_ft": 19500,
+          "endurance_h": 14,
+          "propulsion": "UAV Engines 3W-55i piston"
+        },
+        "RQ-10 Mk4.8 HQ": {
+          "description": "FTUAS (Future Tactical UAS) Aerosonde Mk 4.8 HQ variant"
+        }
+      },
+      "variants": [
+        { "designation": "MQ-19A", "description": "Aerosonde Mk 4.7 / Textron Aerosonde" },
+        { "designation": "RQ-10", "description": "Aerosonde Mk 4.8 HQ — FTUAS (Future Tactical UAS) for USMC; out of sequence" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR", "SAR (optional)", "SIGINT (optional)", "Weather sensors"],
+      "description": "The Aerosonde is a small long-endurance UAV originally designed for meteorological research. It made the first unmanned transatlantic flight in 1998. Textron's AAI division militarized it for ISR. The MQ-19 was selected for various U.S. services. The RQ-10 (out of sequence) is the Aerosonde Mk 4.8 HQ selected for the USMC Future Tactical UAS (FTUAS) to replace the RQ-7 Shadow.",
+      "notes": "The Aerosonde has a track record in extreme weather reconnaissance, including hurricane penetration missions."
+    },
+    {
+      "id": "q-20",
+      "designation": "RQ-20",
+      "name": "Puma AE",
+      "manufacturer": "AeroVironment",
+      "country": "USA",
+      "status": "Active",
+      "role": "Small Tactical UAV — Maritime & Land ISR",
+      "category": "SUAV",
+      "firstFlight": "2007",
+      "introduced": "2008",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "USSOCOM", "U.S. Navy", "Allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-20.html",
+      "images": [],
+      "specs": {
+        "RQ-20A": {
+          "length_m": 1.4, "length_ft": "4 ft 7 in",
+          "wingspan_m": 2.8, "wingspan_ft": "9 ft 2 in",
+          "weight_kg": 6.1, "weight_lb": 13.5,
+          "maxSpeed_kmh": 83, "maxSpeed_kts": 45,
+          "ceiling_m": 4572, "ceiling_ft": 15000,
+          "range_km": 15,
+          "endurance_h": 3.5,
+          "propulsion": "Electric motor"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-20A", "description": "Puma AE (All Environment) — waterproof, water landing/recovery" },
+        { "designation": "RQ-20B", "description": "Puma LE — improved endurance" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO camera", "IR camera", "Optional: SIGINT payload"],
+      "description": "Puma AE (All Environment) is a hand-launched UAV for maritime and land reconnaissance. Fully waterproof, it can be water-launched and water-recovered, making it ideal for naval operations from ships and boats. It became the first small UAS to receive FAA approval for commercial flight operations over water. Extensively used by SOCOM.",
+      "notes": "The RQ-20B Puma LE adds significantly extended endurance. Widely exported to allied special operations forces."
+    },
+    {
+      "id": "q-21",
+      "designation": "RQ-21",
+      "name": "Blackjack",
+      "manufacturer": "Boeing / Insitu",
+      "country": "USA",
+      "status": "Active",
+      "role": "Small Tactical UAS — Naval/Marine ISR",
+      "category": "SUAV",
+      "firstFlight": "July 2012",
+      "introduced": "2014",
+      "retired": "N/A",
+      "operators": ["U.S. Navy", "U.S. Marine Corps"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-21.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-21a.jpg", "caption": "RQ-21A Blackjack", "credit": "USMC, Lance Cpl. Rhita Daniel" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-21a-1.jpg", "caption": "RQ-21A launch", "credit": "Insitu" }
+      ],
+      "specs": {
+        "RQ-21A": {
+          "length_m": 2.5, "length_ft": "8.2 ft",
+          "wingspan_m": 4.8, "wingspan_ft": "15.7 ft",
+          "maxWeight_kg": 61, "maxWeight_lb": 136,
+          "maxSpeed_kmh": 167, "maxSpeed_mph": 104,
+          "ceiling_m": 5940, "ceiling_ft": 19500,
+          "range_km": 93, "range_nm": 50,
+          "endurance_h": 16,
+          "propulsion": "Piston engine, 5.9 kW (8 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-21A", "description": "Blackjack — pneumatic rail launcher, skyhook recovery; 31 systems (5 UAVs each)" },
+        { "designation": "MQ-21A", "description": "Informal USMC designation (official status unclear)" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR imaging", "Laser range-finder", "IR markers", "Communications relay"],
+      "description": "The Blackjack is a variant of Boeing/Insitu's Integrator UAV, winning the Navy STUAS competition in June 2010. First RQ-21A flight July 2012. Launched by pneumatic rail (sea or land) and recovered by the innovative 'skyhook' system — a vertical rope catches the wing, and the vehicle spins to the ground. Max payload 17.7 kg (39 lb), highly configurable. USMC declared IOC 2016; replaced RQ-7 Shadow in Marine service. By 2023, Navy/Marines had 31 systems (5 vehicles each).",
+      "notes": "The skyhook recovery system eliminates the need for runways or arrest gear, allowing shipboard and austere-field operations."
+    },
+    {
+      "id": "q-22",
+      "designation": "RQ-22",
+      "name": "Global Observer",
+      "manufacturer": "AeroVironment",
+      "country": "USA",
+      "status": "Development/Cancelled",
+      "role": "Stratospheric Long-Endurance ISR / Communications Relay",
+      "category": "HALE / Stratospheric",
+      "firstFlight": "August 2010",
+      "introduced": "N/A",
+      "retired": "~2013",
+      "operators": ["SOCOM (eval)", "DARPA"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-22.html",
+      "images": [],
+      "specs": {
+        "RQ-22A": {
+          "wingspan_m": 53.3, "wingspan_ft": "175 ft",
+          "maxWeight_kg": 1814, "maxWeight_lb": 4000,
+          "ceiling_m": 19800, "ceiling_ft": 65000,
+          "endurance_h": 168,
+          "propulsion": "Liquid hydrogen fuel cell + electric motors"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-22A", "description": "Global Observer — hydrogen-powered stratospheric UAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["Communications relay payload", "ISR sensors (planned)"],
+      "description": "The Global Observer is a massive hydrogen-powered UAV designed to fly at stratospheric altitude (65,000 ft) for up to one week without landing, acting as a 'pseudo-satellite.' It uses liquid hydrogen fuel cells for zero-emission propulsion. Lost during a flight test in April 2011. Program did not proceed to full production.",
+      "notes": "The liquid hydrogen propulsion system gave it 7-day endurance potential, effectively a persistent satellite substitute for communications relay and ISR."
+    },
+    {
+      "id": "q-23",
+      "designation": "RQ-23",
+      "name": "TigerShark",
+      "manufacturer": "NASC (Naval Air Systems Command) / Northrop Grumman",
+      "country": "USA",
+      "status": "Limited/Retired",
+      "role": "Medium-Range Tactical ISR",
+      "category": "TUAV",
+      "firstFlight": "~2002",
+      "introduced": "~2005",
+      "retired": "N/A",
+      "operators": ["U.S. Navy (eval)", "USMC"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-23.html",
+      "images": [],
+      "specs": {
+        "RQ-23A": {
+          "wingspan_m": 4.3,
+          "maxWeight_kg": 100,
+          "endurance_h": 8,
+          "ceiling_m": 5486
+        }
+      },
+      "variants": [
+        { "designation": "RQ-23A", "description": "TigerShark — medium tactical UAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR"],
+      "description": "TigerShark is a medium tactical UAV developed for the U.S. Navy. Limited public details are available.",
+      "notes": "Competed with other platforms for Navy/Marine Corps TUAV requirements."
+    },
+    {
+      "id": "q-24",
+      "designation": "CQ-24",
+      "name": "K-MAX",
+      "manufacturer": "Kaman Aerospace / Lockheed Martin",
+      "country": "USA",
+      "status": "Limited/Active",
+      "role": "Autonomous Cargo-Lifting Helicopter UAV",
+      "category": "VTOL / Cargo UAV",
+      "firstFlight": "2011 (unmanned cargo missions)",
+      "introduced": "2011",
+      "retired": "N/A",
+      "operators": ["U.S. Marine Corps (Afghanistan deployment)", "U.S. Army (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-24.html",
+      "images": [],
+      "specs": {
+        "CQ-24A": {
+          "length_m": 15.8, "length_ft": "52 ft",
+          "rotorDiameter_m": 14.7, "rotorDiameter_ft": "48 ft",
+          "maxWeight_kg": 5443, "maxWeight_lb": 12000,
+          "payload_kg": 2722, "payload_lb": 6000,
+          "maxSpeed_kmh": 185, "maxSpeed_kts": 100,
+          "ceiling_m": 4572, "ceiling_ft": 15000,
+          "range_km": 250,
+          "endurance_h": 4,
+          "propulsion": "Honeywell T53-17A turboshaft, 1342 kW (1800 shp)"
+        }
+      },
+      "variants": [
+        { "designation": "CQ-24A", "description": "K-MAX unmanned cargo helicopter" }
+      ],
+      "armament": ["None"],
+      "sensors": ["Navigation sensors", "Obstacle avoidance"],
+      "description": "The K-MAX is a manned intermeshing-rotor helicopter converted to unmanned cargo operations by Kaman and Lockheed Martin. It was deployed to Afghanistan in 2011, conducting the first autonomous cargo resupply missions in combat, delivering over 1.5 million pounds of supplies. The 'C' prefix denotes its cargo mission.",
+      "notes": "In Afghanistan, K-MAX reduced the need for dangerous supply convoy runs, saving lives. The intermeshing rotor design (no tail rotor) maximizes lift efficiency."
+    },
+    {
+      "id": "q-25",
+      "designation": "MQ-25",
+      "name": "Stingray",
+      "manufacturer": "Boeing",
+      "country": "USA",
+      "status": "In development / Early production (IOC planned 2026)",
+      "role": "Carrier-Based Aerial Refueling UAV (secondary ISR)",
+      "category": "Carrier-Based UAV",
+      "firstFlight": "September 2019",
+      "introduced": "IOC 2026 (planned, CVN-71 Theodore Roosevelt)",
+      "retired": "N/A",
+      "operators": ["U.S. Navy"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-25.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-25a.jpg", "caption": "MQ-25A Stingray", "credit": "Boeing" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-25a-1.jpg", "caption": "MQ-25A carrier approach", "credit": "Boeing" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-25a-2.jpg", "caption": "MQ-25A deck operations", "credit": "Boeing" }
+      ],
+      "specs": {
+        "MQ-25A": {
+          "length_m": 15.5, "length_ft": "51 ft",
+          "wingspan_m": 22.9, "wingspan_ft": "75 ft",
+          "height_m": 3.0, "height_ft": "9.8 ft",
+          "fuelOffload_kg": 7250, "fuelOffload_lb": 16000,
+          "tankerRadius_km": 930, "tankerRadius_miles": 580,
+          "propulsion": "Rolls-Royce AE3700N turbofan, >44 kN (10,000 lbf)"
+        }
+      },
+      "variants": [
+        { "designation": "ZRAQ-25A", "description": "UCLASS — original stealthy ISR/strike concept (cancelled 2016)" },
+        { "designation": "ZMQ-25A", "description": "CBARS — Carrier-Based Aerial Refueling System redesign" },
+        { "designation": "MQ-25A", "description": "Stingray — production refueling tanker; 76 planned" }
+      ],
+      "armament": ["None (tanker; ISR secondary)"],
+      "sensors": ["ISR suite (details not published)", "Carrier equipment: folding wings, arrestor hook, sturdy gear"],
+      "description": "The Stingray is the U.S. Navy's first operational carrier-based UAV. It evolved from the troubled UCLASS (stealthy ISR/strike) program, redefined as CBARS (pure tanker) in 2016. Boeing won the contract in October 2018. First flight September 2019; first aerial refueling test June 2021; carrier deck trials December 2021. It can offload 7,250 kg of fuel at 930 km range, extending the carrier air wing's strike radius. Controlled by MD-5C (carrier), MD-5D (shore), MD-5E (embarkable) ground stations. 76 aircraft planned; IOC on CVN-71 Theodore Roosevelt planned 2026.",
+      "notes": "By taking over the tanker role from F/A-18s, the MQ-25 frees up strike fighters for combat sorties, significantly extending carrier strike group reach."
+    },
+    {
+      "id": "q-26",
+      "designation": "RQ-26",
+      "name": "Aerostar",
+      "manufacturer": "AeroNautics (Aeronautics Defense Systems)",
+      "country": "Israel (for US use)",
+      "status": "Active (export/limited US use)",
+      "role": "Medium Tactical Long-Endurance ISR",
+      "category": "TUAV",
+      "firstFlight": "~2000",
+      "introduced": "~2005",
+      "retired": "N/A",
+      "operators": ["U.S. Army (eval)", "Multiple allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-26.html",
+      "images": [],
+      "specs": {
+        "RQ-26A": {
+          "wingspan_m": 7.5,
+          "maxWeight_kg": 220, "maxWeight_lb": 485,
+          "maxSpeed_kmh": 130, "maxSpeed_kts": 70,
+          "ceiling_m": 5486, "ceiling_ft": 18000,
+          "endurance_h": 12,
+          "propulsion": "Limbach piston engine, 37 kW (50 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-26A", "description": "Aerostar tactical UAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR turret", "Optional: SIGINT, SAR"],
+      "description": "Aerostar is an Israeli tactical UAV from Aeronautics Defense Systems, adopted by the U.S. Army under the RQ-26 designation for evaluation. It is a conventional twin-boom pusher design with good endurance characteristics.",
+      "notes": "Widely exported; used operationally in multiple conflict zones including Ukraine."
+    },
+    {
+      "id": "q-27",
+      "designation": "MQ-27",
+      "name": "ScanEagle",
+      "manufacturer": "Boeing / Insitu",
+      "country": "USA",
+      "status": "Active",
+      "role": "Long-Endurance Tactical ISR — Ship/Land based",
+      "category": "SUAV",
+      "firstFlight": "2002",
+      "introduced": "2004",
+      "retired": "N/A",
+      "operators": ["U.S. Navy", "USMC", "U.S. Army", "SOCOM", "40+ allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-27.html",
+      "images": [],
+      "specs": {
+        "MQ-27A": {
+          "length_m": 1.55, "length_ft": "5 ft 1 in",
+          "wingspan_m": 3.11, "wingspan_ft": "10 ft 2 in",
+          "height_m": 0.3, "height_ft": "1 ft",
+          "maxWeight_kg": 22, "maxWeight_lb": 48,
+          "maxSpeed_kmh": 148, "maxSpeed_kts": 80,
+          "ceiling_m": 4877, "ceiling_ft": 16000,
+          "range_km": 100,
+          "endurance_h": 24,
+          "propulsion": "3W-28i piston engine, 1.5 kW (2 hp)"
+        }
+      },
+      "variants": [
+        { "designation": "MQ-27A", "description": "ScanEagle — pneumatic catapult launch, skyhook or net recovery" },
+        { "designation": "ScanEagle 2", "description": "Improved commercial version" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR (gimbaled)", "Optional: SAR, SIGINT"],
+      "description": "ScanEagle is a long-endurance ISR UAV that can be launched from a pneumatic SuperWedge catapult and recovered using Insitu's SkyHook system. Originally developed for commercial fishery monitoring, militarized version adopted by US military. It operates from ships and land bases, providing 24h+ persistent surveillance. One of the most widely exported small UAVs globally.",
+      "notes": "ScanEagle was used extensively in Iraq and Afghanistan for convoy protection and persistent area surveillance. Over 1,000 flight hours per month during peak operations."
+    },
+    {
+      "id": "q-28",
+      "designation": "RQ-28",
+      "name": "X2D",
+      "manufacturer": "Skydio",
+      "country": "USA",
+      "status": "Active",
+      "role": "Autonomous Quadcopter — Tactical ISR / Base Security",
+      "category": "Quadcopter UAV",
+      "firstFlight": "~2019",
+      "introduced": "2020",
+      "retired": "N/A",
+      "operators": ["U.S. Army", "USMC", "Allied nations"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-28.html",
+      "images": [],
+      "specs": {
+        "RQ-28A": {
+          "size_m": 0.66, "size_in": "26 in",
+          "weight_kg": 1.5, "weight_lb": 3.3,
+          "maxSpeed_kmh": 58, "maxSpeed_mph": 36,
+          "ceiling_m": 4000, "ceiling_ft": 13000,
+          "range_km": 5,
+          "endurance_min": 35,
+          "propulsion": "4x electric motors (quadcopter)"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-28A", "description": "X2D — advanced AI obstacle avoidance, man-portable" }
+      ],
+      "armament": ["None"],
+      "sensors": ["360° obstacle avoidance cameras (6x)", "EO/IR imaging", "GPS"],
+      "description": "The Skydio X2D is a highly autonomous quadcopter UAV known for its AI-powered obstacle avoidance (6 cameras providing 360° coverage). Adopted by the U.S. Army for tactical reconnaissance and base security. Compact, man-portable, and can fly autonomously in complex environments including forests, buildings, and tunnels.",
+      "notes": "Skydio's autonomous obstacle avoidance was its key selling point vs competitors. The drone can maintain target tracking even through complex terrain."
+    },
+    {
+      "id": "q-29",
+      "designation": "RQ-29",
+      "name": "LEA",
+      "manufacturer": "Technology Service Corporation (TSC)",
+      "country": "USA",
+      "status": "Limited/Development",
+      "role": "Small ISR UAV",
+      "category": "SUAV",
+      "firstFlight": "Unknown",
+      "introduced": "Unknown",
+      "retired": "N/A",
+      "operators": ["DARPA (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-29.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "RQ-29A", "description": "LEA — limited details available" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR"],
+      "description": "The LEA is a small UAV developed by Technology Service Corporation. Very limited public information is available.",
+      "notes": "One of the less-documented designations in the Q-series."
+    },
+    {
+      "id": "q-30",
+      "designation": "RQ-30",
+      "name": "Valiant",
+      "manufacturer": "Griffon Aerospace",
+      "country": "USA",
+      "status": "Limited",
+      "role": "Long-Endurance ISR / Target",
+      "category": "TUAV",
+      "firstFlight": "~2010",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["U.S. Army (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-30.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "RQ-30A", "description": "Valiant tactical UAV" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR"],
+      "description": "The Valiant is a long-endurance UAV developed by Griffon Aerospace. Limited public information is available.",
+      "notes": "Griffon Aerospace also produces aerial targets and drone systems."
+    },
+    {
+      "id": "mq-20",
+      "designation": "MQ-20",
+      "name": "Avenger (Predator C)",
+      "manufacturer": "General Atomics Aeronautical Systems (GA-ASI)",
+      "country": "USA",
+      "status": "Development / Limited production (undisclosed customers)",
+      "role": "Stealth Armed MALE UCAV / ISR",
+      "category": "MALE UCAV",
+      "firstFlight": "April 4, 2009",
+      "introduced": "N/A (no large-scale USAF order)",
+      "retired": "N/A",
+      "operators": ["USAF (1 eval)", "Undisclosed U.S. government customer (7 reported, 2017)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/mq-20.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-20a.jpg", "caption": "MQ-20A Avenger (Predator C)", "credit": "USAF" }
+      ],
+      "specs": {
+        "MQ-20A": {
+          "length_m": 13, "length_ft": "44 ft",
+          "wingspan_m": 20, "wingspan_ft": "66 ft",
+          "maxWeight_kg": 8255, "maxWeight_lb": 18200,
+          "maxSpeed_kmh": 740, "maxSpeed_mph": 460,
+          "ceiling_m": 15240, "ceiling_ft": 50000,
+          "endurance_h": 20,
+          "propulsion": "Pratt & Whitney PW545B turbofan, 17.8 kN (4000 lbf)"
+        }
+      },
+      "variants": [
+        { "designation": "Avenger (MQ-20A)", "description": "Jet-powered, internal bay, some stealth features" },
+        { "designation": "Avenger ER", "description": "Extended range variant with conformal fuel tanks" }
+      ],
+      "armament": [
+        "GBU-31/32/38 JDAM", "GBU-12/49/16/48 Paveway",
+        "GBU-39/B Small Diameter Bomb (SDB)",
+        "AGM-114 Hellfire"
+      ],
+      "sensors": ["AN/APY-8 Lynx SAR", "F-35 EOTS variant (EO/IR targeting)", "Retractable gimbal turret"],
+      "description": "The Avenger (Predator C) is GA-ASI's jet-powered UCAV, developed as a private venture. It uses the same GCS as earlier Predator drones. Key stealth features include an internal weapons bay (1,360 kg total payload, 6 optional hardpoints) and S-shaped exhaust duct. First flew April 4, 2009. USAF evaluated one aircraft as 'MQ-X' successor to MQ-9 but cancelled in 2012, deeming cost/benefit insufficient. GA-ASI reported 7 sold to an undisclosed US government customer in 2017. Used for AI-based autonomous operations tests and new payload integration.",
+      "notes": "Designation note: MQ-20A is out of sequence (Q-20 is the RQ-20 Puma AE). Neither MQ-20A nor prior YQ-11 informal designation is officially allocated. The number was taken from the F-20 parallel but applied informally by USAF and GA-ASI."
+    },
+    {
+      "id": "mq-28",
+      "designation": "MQ-28",
+      "name": "Ghost Bat",
+      "manufacturer": "Boeing Australia",
+      "country": "Australia (for US/AUS military)",
+      "status": "Development",
+      "role": "Loyal Wingman / Teaming Combat UAV",
+      "category": "Combat UAV / UCAV",
+      "firstFlight": "February 27, 2021",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["Royal Australian Air Force", "USAF (cooperative program)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/mq-28.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/mq-28.jpg", "caption": "MQ-28A Ghost Bat", "credit": "Boeing Australia" }
+      ],
+      "specs": {
+        "MQ-28A": {
+          "length_m": 11.7, "length_ft": "38 ft 5 in",
+          "wingspan_m": 7.3, "wingspan_ft": "24 ft",
+          "range_km": 3700, "range_nm": 2000,
+          "propulsion": "Honeywell F124 turbofan (estimated)"
+        }
+      },
+      "variants": [
+        { "designation": "MQ-28A", "description": "Ghost Bat — first article built in Australia to receive a US MDS designation" }
+      ],
+      "armament": ["Internal weapons bay (details classified)"],
+      "sensors": ["AI-enabled sensor fusion", "EO/IR", "AESA radar (planned)"],
+      "description": "The Ghost Bat is an advanced teaming UAV developed under Australia's Loyal Wingman program in partnership with Boeing. It is designed to fly autonomously alongside manned fighters (F/A-18F, F-35A) as a force multiplier, providing additional sensor coverage, jamming, and weapons carriage. The MQ-28A is historically significant as the first defense article designed and manufactured in Australia to receive a U.S. military MDS designation. First flew February 27, 2021.",
+      "notes": "Three development aircraft built. The program demonstrated AI-enabled autonomous teaming with manned aircraft. A key element of the RAAF's plans for Advanced Air Superiority."
+    },
+    {
+      "id": "q-35",
+      "designation": "MQ-35",
+      "name": "V-BAT",
+      "manufacturer": "Shield AI",
+      "country": "USA",
+      "status": "Active / Development",
+      "role": "VTOL UAS — ISR / Ship-based",
+      "category": "VTOL UAV",
+      "firstFlight": "~2017",
+      "introduced": "~2020",
+      "retired": "N/A",
+      "operators": ["U.S. Navy (eval)", "USMC (eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-35.html",
+      "images": [],
+      "specs": {
+        "MQ-35A": {
+          "height_m": 1.8,
+          "diameter_m": 0.3,
+          "weight_kg": 28, "weight_lb": 62,
+          "maxSpeed_kmh": 93, "maxSpeed_kts": 50,
+          "ceiling_m": 4572, "ceiling_ft": 15000,
+          "endurance_h": 11,
+          "propulsion": "Single ducted fan (gasoline)"
+        }
+      },
+      "variants": [
+        { "designation": "MQ-35A", "description": "V-BAT — single fan VTOL, tail-sitter design" }
+      ],
+      "armament": ["None"],
+      "sensors": ["EO/IR", "Communications relay (optional)"],
+      "description": "The V-BAT is a tail-sitter VTOL UAV using a single ducted fan for both vertical lift and forward flight (no separate lift rotors). Developed by Martin UAV, acquired by Shield AI. Compact enough for ship-deck operations. Selected for U.S. Navy/Marine evaluation for maritime ISR. The 'M' prefix implies multi-mission capability including potential armed variants.",
+      "notes": "The single ducted fan tail-sitter design is exceptionally simple mechanically — no swiveling rotors or tilting mechanisms needed for VTOL-to-cruise transition."
+    },
+    {
+      "id": "q-42",
+      "designation": "FQ-42",
+      "name": "Dark Merlin",
+      "manufacturer": "General Atomics",
+      "country": "USA",
+      "status": "Development",
+      "role": "Air-launched Attritable ISR/Strike UAV",
+      "category": "Attritable UAV",
+      "firstFlight": "Unknown",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["USAF (program)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-42.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "FQ-42A", "description": "Dark Merlin — 'F' prefix = expendable/attritable" }
+      ],
+      "armament": ["Warhead (expendable)"],
+      "sensors": ["ISR payload"],
+      "description": "Dark Merlin is an attritable (expendable or reusable) air-launched UAV developed by General Atomics under USAF programs. The 'F' prefix in the designation indicates it is intended to be optionally expendable. Very limited public information is available.",
+      "notes": "The FQ- designation prefix is new for the Q-series — 'F' indicates expendable/attritable vs standard recoverable UAV."
+    },
+    {
+      "id": "q-44",
+      "designation": "FQ-44",
+      "name": "Fury",
+      "manufacturer": "Anduril Industries",
+      "country": "USA",
+      "status": "Development",
+      "role": "Air-launched Attritable Combat UAV",
+      "category": "Attritable UAV",
+      "firstFlight": "~2023",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["USAF (program)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-44.html",
+      "images": [],
+      "specs": {
+        "FQ-44A": {
+          "length_m": 4.3,
+          "wingspan_m": 3.4,
+          "propulsion": "Small turbojet"
+        }
+      },
+      "variants": [
+        { "designation": "FQ-44A", "description": "Fury — Anduril's attritable air-launched UAV" }
+      ],
+      "armament": ["Warhead (expendable)"],
+      "sensors": ["EO/IR / seeker"],
+      "description": "The Fury is an attritable air-launched combat UAV developed by Anduril Industries under USAF programs including OBSS (Off-Board Sensing Station). Designed for swarming operations when launched from larger aircraft, it can provide ISR or strike capability at low per-unit cost.",
+      "notes": "Anduril is a leading defense tech company founded by Palmer Luckey. Fury is part of their autonomous systems portfolio."
+    },
+    {
+      "id": "q-48",
+      "designation": "FQ-48",
+      "name": "Talon Blue",
+      "manufacturer": "Northrop Grumman",
+      "country": "USA",
+      "status": "Development",
+      "role": "Attritable Air-launched Combat UAV",
+      "category": "Attritable UAV",
+      "firstFlight": "Unknown",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["USAF (program)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-48.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "FQ-48A", "description": "Talon Blue — Northrop Grumman attritable UAV" }
+      ],
+      "armament": ["Warhead / weapons bay"],
+      "sensors": ["EO/IR / AESA radar (planned)"],
+      "description": "Talon Blue is Northrop Grumman's attritable combat UAV for USAF programs. Part of the new generation of optionally expendable drones designed to operate in large numbers, supplementing manned aircraft. Very limited public information available.",
+      "notes": "Part of the broader USAF Collaborative Combat Aircraft (CCA) ecosystem that also includes the XQ-58A Valkyrie."
+    },
+    {
+      "id": "q-58",
+      "designation": "XQ-58",
+      "name": "Valkyrie",
+      "manufacturer": "Kratos Defense & Security Solutions",
+      "country": "USA",
+      "status": "Development / Testing (Block 2, potential MQ-58B)",
+      "role": "Experimental UCAV / Loyal Wingman / Attritable Strike UAV",
+      "category": "UCAV / Attritable",
+      "firstFlight": "March 2019",
+      "introduced": "N/A (experimental)",
+      "retired": "N/A",
+      "operators": ["USAF (AFRL)", "U.S. Marine Corps (2 eval)", "U.S. Navy (2 eval)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-58.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/xq-58a.jpg", "caption": "XQ-58A Valkyrie first flight", "credit": "88 Air Base Wing Public Affairs, USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/xq-58a-2.jpg", "caption": "XQ-58A in flight", "credit": "USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/xq-58a-1.jpg", "caption": "XQ-58A Block 2", "credit": "Master Sgt. Tristan McIntire, 96th TW, USAF" }
+      ],
+      "specs": {
+        "XQ-58A": {
+          "length_m": 9.1, "length_ft": "30 ft",
+          "wingspan_m": 8.2, "wingspan_ft": "27 ft",
+          "height_m": 2.5, "height_ft": "8.3 ft",
+          "emptyWeight_kg": 1130, "emptyWeight_lb": 2500,
+          "maxWeight_kg": 2720, "maxWeight_lb": 6000,
+          "maxSpeed_mach": 0.85,
+          "ceiling_m": 13700, "ceiling_ft": 45000,
+          "range_km": 5500, "range_miles": 3500,
+          "propulsion": "Single turbojet, 8.9 kN (2000 lbf)"
+        }
+      },
+      "variants": [
+        { "designation": "XQ-58A Block 1", "description": "Initial design; first flew March 2019" },
+        { "designation": "XQ-58A Block 2", "description": "Current configuration; first flew 2022" },
+        { "designation": "MQ-58B", "description": "Planned USMC production variant for SEAD role (MUX TACAIR program)" }
+      ],
+      "armament": [
+        "Internal bay: SDB (Small Diameter Bomb)",
+        "AIM-120 AMRAAM (demonstrated)",
+        "Payload: 270 kg internal + 270 kg wing stations"
+      ],
+      "sensors": ["EO/IR", "AESA radar (planned)", "AI Skyborg autonomous pilot (demonstrated Aug 2023)"],
+      "description": "The Valkyrie is a low-cost attritable UCAV developed under AFRL's LCASD (Low Cost Attritable Strike Demonstrator) program. Kratos developed the XQ-222 design, designated XQ-58A in 2017. It is rocket-booster launched from a trailer and parachute-recovered — no runway needed. Range of 5,500 km on a small turbojet. Demonstrated: full performance envelope, SDB release from internal bay, data relay between F-35 and F-22, acted as loyal wingman. Flown autonomously by USAF AI Skyborg system in August 2023. USMC and Navy each purchased 2 for evaluation; Marines tested Electronic Attack payloads with F-35s. USMC plans MQ-58B for SEAD missions.",
+      "notes": "Designation note: The number 58 was derived from the X-series (between X-57A and X-59A); there is no X-58A, and it is unclear why XQ-58A was used instead."
+    },
+    {
+      "id": "q-67",
+      "designation": "XQ-67",
+      "name": "OBSS",
+      "manufacturer": "General Atomics",
+      "country": "USA",
+      "status": "Development / Testing",
+      "role": "Off-Board Sensing Station — Attritable ISR/Strike",
+      "category": "Attritable UAV",
+      "firstFlight": "2024",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["USAF (AFRL)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-67.html",
+      "images": [],
+      "specs": {
+        "XQ-67A": {
+          "propulsion": "Small turbofan",
+          "notes": "Detailed specs not publicly available"
+        }
+      },
+      "variants": [
+        { "designation": "XQ-67A", "description": "OBSS — Off-Board Sensing Station demonstrator" }
+      ],
+      "armament": ["Weapons bay (planned)"],
+      "sensors": ["AESA radar (planned)", "EO/IR"],
+      "description": "The XQ-67A OBSS (Off-Board Sensing Station) is General Atomics' contribution to the USAF's collaborative combat aircraft ecosystem. It is designed to act as a distributed sensor node and/or weapons carrier operating off larger manned or unmanned platforms. First flew in 2024.",
+      "notes": "The OBSS concept extends the sensor reach of manned aircraft like F-35s and F-22s by deploying networked attritable UAVs as remote sensing nodes."
+    },
+    {
+      "id": "q-72",
+      "designation": "RQ-72",
+      "name": "Great Horned Owl",
+      "manufacturer": "Northrop Grumman",
+      "country": "USA",
+      "status": "Development",
+      "role": "Classified ISR UAV",
+      "category": "Unknown / Classified",
+      "firstFlight": "Unknown",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["USAF / classified agencies"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-72.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "RQ-72A", "description": "Great Horned Owl — details classified" }
+      ],
+      "armament": ["None confirmed"],
+      "sensors": ["Classified"],
+      "description": "The RQ-72 Great Horned Owl is a classified Northrop Grumman UAV program. Very limited public information is available. The name follows the tradition of naming HALE/stealth ISR UAVs after birds of prey (like the Global Hawk, Fire Scout, etc.).",
+      "notes": "Out-of-sequence designation suggests a distinct program priority or classification level."
+    },
+    {
+      "id": "q-73",
+      "designation": "RQ-73",
+      "name": "SHEPARD",
+      "manufacturer": "Northrop Grumman",
+      "country": "USA",
+      "status": "Development",
+      "role": "Classified ISR / Support UAV",
+      "category": "Unknown / Classified",
+      "firstFlight": "Unknown",
+      "introduced": "N/A",
+      "retired": "N/A",
+      "operators": ["Classified"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-73.html",
+      "images": [],
+      "specs": {},
+      "variants": [
+        { "designation": "RQ-73A", "description": "SHEPARD — limited public information" }
+      ],
+      "armament": ["None confirmed"],
+      "sensors": ["Classified"],
+      "description": "The RQ-73 SHEPARD is a classified Northrop Grumman UAV. SHEPARD is likely an acronym. Very limited public information is available.",
+      "notes": "The consecutive numbering with RQ-72 suggests related or parallel programs at Northrop Grumman."
+    },
+    {
+      "id": "q-170",
+      "designation": "RQ-170",
+      "name": "Sentinel",
+      "manufacturer": "Lockheed Martin (Skunk Works)",
+      "country": "USA",
+      "status": "Active",
+      "role": "Low-Observable HALE Reconnaissance UAV",
+      "category": "Stealth HALE",
+      "firstFlight": "December 2005",
+      "introduced": "2007 (Kandahar deployment)",
+      "retired": "N/A",
+      "operators": ["USAF (30th & 44th Reconnaissance Squadrons, Creech AFB)"],
+      "sourceUrl": "https://www.designation-systems.net/dusrm/app2/q-170.html",
+      "images": [
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-170.jpg", "caption": "RQ-170 Sentinel", "credit": "USAF" },
+        { "url": "https://www.designation-systems.net/dusrm/app2/rq-170-1.jpg", "caption": "RQ-170 in flight", "credit": "@AircraftSpots" }
+      ],
+      "specs": {
+        "RQ-170A": {
+          "length_m": 4.5, "length_ft": "14 ft 9 in",
+          "wingspan_m": 11.8, "wingspan_ft": "38 ft 7 in",
+          "height_m": 1.8, "height_ft": "6 ft",
+          "ceiling_m": 15000, "ceiling_ft": 50000,
+          "endurance_h": 6,
+          "propulsion": "1 turbofan (details classified)",
+          "note": "All specs are estimates — USAF has published no official data"
+        }
+      },
+      "variants": [
+        { "designation": "RQ-170A", "description": "Sentinel (likely full designation, never officially confirmed)" }
+      ],
+      "armament": ["None confirmed (ISR only)"],
+      "sensors": ["EO/IR (ventral bay)", "Side-looking radar", "SATCOM (dorsal humps)", "SIGINT (assumed)"],
+      "description": "The Sentinel is a flying-wing low-observable UAV built by Lockheed Skunk Works. Development began post-9/11 under USAF AFRCO requirement for a stealthy forward ISR platform. Based partly on the company-funded Manta design. Ground testing started early 2005; first flight December 2005. Deployed to Kandahar 2007 but not publicly acknowledged until December 2009. Key missions: gathered ISR data for Operation Neptune Spear (bin Laden raid), May 2011. Also flew reconnaissance over Iran. In December 2011, an RQ-170 came down in Iran (widely attributed to GPS spoofing by Iran, though this is disputed). 20-30 total built. Currently operated by 30th and 44th Recon Squadrons at Creech AFB.",
+      "notes": "Designation note: The number 170 was derived from Lockheed's in-house P-170 project number. Unofficially nicknamed 'Wraith.' The 'Beast of Kandahar' was its first public name."
+    }
+  ]
+}
